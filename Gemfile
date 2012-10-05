@@ -36,3 +36,25 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
+gem "capybara", ">= 1.1.2", :group => :test
+gem "email_spec", ">= 1.2.1", :group => :test
+gem "cucumber-rails", ">= 1.3.0", :group => :test, :require => false
+gem "database_cleaner", ">= 0.8.0", :group => :test
+gem "launchy", ">= 2.1.2", :group => :test
+gem "factory_girl_rails", ">= 4.0.0", :group => [:development, :test]
+gem "bootstrap-sass", ">= 2.1.0.0"
+gem "devise", ">= 2.1.2"
+gem "devise_invitable", ">= 1.0.3"
+gem "cancan", ">= 1.6.8"
+gem "rolify", ">= 3.2.0"
+gem "simple_form", ">= 2.0.2"
+gem "paper_trail"
+gem "rmagick"
+gem "carrierwave"
+gem "values_for"
+gem "default_value_for"
+gem "acts_as_list"
+gem "acts_as_ordered_tree"
+gem "friendly_id"
