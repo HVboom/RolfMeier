@@ -20,7 +20,49 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# Rich UI
 gem 'jquery-rails'
+gem "bootstrap-sass", ">= 2.1.0.0"
+gem "simple_form", ">= 2.0.2"
+
+# Authorisation and authentication
+gem "devise", ">= 2.1.2"
+gem "devise_invitable", ">= 1.0.3"
+gem "cancan", ">= 1.6.8"
+gem "rolify", ">= 3.2.0"
+
+# History
+gem 'paper_trail', '~> 2'
+# RMagick image processing - depends on installed ImageMagick package http://cactuslab.com/imagemagick/
+gem 'rmagick'
+# CarrierWave file uploader
+gem 'carrierwave'
+# enumeration and default values
+gem 'values_for'
+gem 'default_value_for'
+# Menu helper
+gem "acts_as_list"
+gem 'acts_as_ordered_tree'
+# User friendly page URLs
+gem 'friendly_id'
+
+group :development do
+  # To use debugger
+  gem 'debugger'
+end
+
+group :development, :test do
+  gem "rspec-rails", ">= 2.11.0"
+  gem "factory_girl_rails", ">= 4.0.0"
+end
+
+group :test do
+  gem "capybara", ">= 1.1.2"
+  gem "email_spec", ">= 1.2.1"
+  gem "cucumber-rails", ">= 1.3.0", :require => false
+  gem "database_cleaner", ">= 0.8.0"
+  gem "launchy", ">= 2.1.2"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -34,27 +76,3 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
-
-gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
-gem "capybara", ">= 1.1.2", :group => :test
-gem "email_spec", ">= 1.2.1", :group => :test
-gem "cucumber-rails", ">= 1.3.0", :group => :test, :require => false
-gem "database_cleaner", ">= 0.8.0", :group => :test
-gem "launchy", ">= 2.1.2", :group => :test
-gem "factory_girl_rails", ">= 4.0.0", :group => [:development, :test]
-gem "bootstrap-sass", ">= 2.1.0.0"
-gem "devise", ">= 2.1.2"
-gem "devise_invitable", ">= 1.0.3"
-gem "cancan", ">= 1.6.8"
-gem "rolify", ">= 3.2.0"
-gem "simple_form", ">= 2.0.2"
-gem "paper_trail"
-gem "rmagick"
-gem "carrierwave"
-gem "values_for"
-gem "default_value_for"
-gem "acts_as_list"
-gem "acts_as_ordered_tree"
-gem "friendly_id"
