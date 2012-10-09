@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   # validations
   validates_presence_of :email
   validates_uniqueness_of :email, :case_sensitive => false
+  validates_length_of :password, :minimum => 6
   validates_presence_of :roles
 
   # authenticate first user as admin or set default role to editor
