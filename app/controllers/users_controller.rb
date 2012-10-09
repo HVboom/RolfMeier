@@ -1,13 +1,21 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
 
+  # GET /pictures
+  # GET /pictures.json
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = User.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @pictures }
+    end
   end
 
+  # GET /pictures/1
+  # GET /pictures/1.json
   def show
-    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @picture }
+    end
   end
-
 end

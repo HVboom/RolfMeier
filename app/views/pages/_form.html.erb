@@ -1,0 +1,19 @@
+<%= simple_form_for(@page, :html => {:class => "form-horizontal" }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :slug %>
+    <%= f.input :short_text %>
+    <%= f.input :long_text %>
+    <%= f.input :maintainer %>
+    <%= f.input :content_type %>
+    <%= f.input :content %>
+    <%= f.association :menu %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn-primary" %>
+    <%= submit_tag "Reset", :type => :reset, :class => "btn btn-warning" %>
+  </div>
+<% end %>

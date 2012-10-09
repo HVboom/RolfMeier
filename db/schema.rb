@@ -11,7 +11,52 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007095745) do
+ActiveRecord::Schema.define(:version => 20121009114913) do
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.integer  "page_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "galleries", ["page_id"], :name => "index_galleries_on_page_id"
+
+  create_table "menus", :force => true do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.integer  "parent_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "menus", ["parent_id"], :name => "index_menus_on_parent_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "short_text"
+    t.text     "long_text"
+    t.string   "maintainer"
+    t.string   "content_type"
+    t.text     "content"
+    t.integer  "menu_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "pages", ["menu_id"], :name => "index_pages_on_menu_id"
+
+  create_table "pictures", :force => true do |t|
+    t.string   "title"
+    t.string   "image"
+    t.integer  "position"
+    t.integer  "gallery_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pictures", ["gallery_id"], :name => "index_pictures_on_gallery_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

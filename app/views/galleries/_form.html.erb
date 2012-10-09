@@ -1,0 +1,13 @@
+<%= simple_form_for(@gallery, :html => {:class => "form-horizontal" }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.association :page %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn-primary" %>
+    <%= submit_tag "Reset", :type => :reset, :class => "btn btn-warning" %>
+  </div>
+<% end %>
