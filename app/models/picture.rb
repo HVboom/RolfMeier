@@ -10,6 +10,7 @@ class Picture < ActiveRecord::Base
   attr_accessible :title, :gallery_id, :image, :image_cache, :remove_image, :remote_image_url
 
   # validations
+  before_validation :default_title
   before_validation :strip_whitespaces
 
   validates_presence_of :title
@@ -19,6 +20,10 @@ class Picture < ActiveRecord::Base
   has_paper_trail
 
   private
+    def default_title
+      self.title ||= File.basename(image.filename, '.*').titleize if image
+    end
+
     def strip_whitespaces
       self.title.strip! unless self.title.blank?
     end

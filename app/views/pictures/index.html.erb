@@ -1,29 +1,19 @@
 <h1>Listing pictures</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Image</th>
-    <th>Position</th>
-    <th>Gallery</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="pictures">
+  <%= render @pictures %>
+</div>
+<div class="clear"></div>
 
-<% @pictures.each do |picture| %>
-  <tr>
-    <td><%= picture.title %></td>
-    <td><%= picture.image %></td>
-    <td><%= picture.position %></td>
-    <td><%= picture.gallery %></td>
-    <td><%= link_to 'Show', picture %></td>
-    <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-    <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<%= form_for Picture.new do |f| %>
+  <%= f.label :image, "Upload pictures:" %>
+  <%= f.file_field :image, multiple: true, name: "picture[image]" %>
 <% end %>
-</table>
 
-<br />
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
 
-<%= link_to 'New Picture', new_picture_path %>
