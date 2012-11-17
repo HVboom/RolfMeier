@@ -14,7 +14,7 @@
   <tr>
     <td><%= menu.title %></td>
     <td><%= menu.position %></td>
-    <td><%= menu.parent %></td>
+    <td><%= menu.parent.title if menu.parent %></td>
     <td><%= link_to 'Show', menu %></td>
     <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
     <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
