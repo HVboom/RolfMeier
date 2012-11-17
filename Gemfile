@@ -40,7 +40,7 @@ gem 'rmagick'
 # CarrierWave file uploader
 gem 'carrierwave'
 # enumeration and default values
-gem 'values_for'
+gem 'values_for', :path => "vendor/values_for"
 gem 'default_value_for'
 # Menu helper
 gem "acts_as_list"
@@ -50,7 +50,7 @@ gem 'friendly_id'
 
 group :development do
   # To use debugger
-  gem 'debugger'
+  # gem 'debugger'
 end
 
 group :development, :test do

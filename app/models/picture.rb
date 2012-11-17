@@ -7,7 +7,7 @@ class Picture < ActiveRecord::Base
   acts_as_list :scope => :gallery
 
   # mass assignment
-  attr_accessible :title, :gallery_id, :image, :image_cache, :remove_image, :remote_image_url
+  attr_accessible :title, :gallery_id, :image, :image_cache, :remove_image, :remote_image_url, :position
 
   # validations
   before_validation :default_title

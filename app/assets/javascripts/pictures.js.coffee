@@ -9,7 +9,7 @@ jQuery ->
       file = data.files[0]
       if types.test(file.type) || types.test(file.name)
         data.context = $(tmpl("template-upload", file))
-        $('#new_picture').append(data.context)
+        $('#progressbars').append(data.context)
         data.submit()
       else
         alert("#{file.name} is not a gif, jpeg, or png image file")
@@ -17,4 +17,7 @@ jQuery ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)
         data.context.find('.bar').css('width', progress + '%')
+    done: (e, data) ->
+      if data.context
+        data.context.fadeOut('slow', -> data.context.remove())
 
