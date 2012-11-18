@@ -20,7 +20,7 @@ class Menu < ActiveRecord::Base
 
   private
     def only_2_menu_levels
-      # the parent is itself not a child and there is and parent
+      # the parent is itself not a child and there is a parent
       errors.add(:parent, "only 2 levels are allowed") unless (self.parent.nil? || self.parent.root?)
     end
 

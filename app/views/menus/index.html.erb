@@ -1,27 +1,25 @@
 <h1>Listing menus</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Position</th>
-    <th>Parent</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<ul id="menus" class="sortable" >
+  <% @menus.each do |menu| %>
+    <%= content_tag_for :li, menu, {:class => "menu_item ui-state-default span2", :data => {:update_url => menu_sort_url(menu)}} do %>
+      <%= link_to menu.title, edit_menu_path(menu) %>
 
-<% @menus.each do |menu| %>
-  <tr>
-    <td><%= menu.title %></td>
-    <td><%= menu.position %></td>
-    <td><%= menu.parent.title if menu.parent %></td>
-    <td><%= link_to 'Show', menu %></td>
-    <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
-    <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <%= content_tag_for :ul, menu, :submenus, :class => "sortable" do %>
+        <%- if menu.leaf? %>
+          <li />
+        <%- else %>
+          <% menu.children.each do |submenu| %>
+            <%= content_tag_for :li, submenu, {:class => "submenu_item ui-state-default", :data => {:update_url => menu_sort_url(submenu)}} do %>
+              <%= link_to submenu.title, edit_menu_path(submenu) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
 
-<br />
+<div class="clearfix" />
 
 <%= link_to 'New Menu', new_menu_path %>

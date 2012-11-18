@@ -1,5 +1,7 @@
 RolfMeier::Application.routes.draw do
-  resources :menus
+  resources :menus do
+    post :sort
+  end
 
   resources :pages
 

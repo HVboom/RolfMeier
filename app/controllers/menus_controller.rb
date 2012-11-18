@@ -4,6 +4,9 @@ class MenusController < ApplicationController
   # GET /menus
   # GET /menus.json
   def index
+    # give only the top level menu items to the view
+    @menus = Menu.roots
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @menus }
@@ -69,5 +72,40 @@ class MenusController < ApplicationController
       format.html { redirect_to menus_url }
       format.json { head :no_content }
     end
+  end
+
+  # handle the sorting of menu items
+  def sort
+    menu = Menu.find_by_id(params['menu_id'])
+    new_parent_id = params['parent_id'].to_i
+    new_parent = Menu.find_by_id(new_parent_id) if(new_parent_id > 0)
+
+    logger.debug "new_parent_id > 0 " + (new_parent_id > 0).to_s
+
+    logger.debug "menu: #{menu.attributes.inspect}"
+    logger.debug "new parent: #{new_parent.attributes.inspect}" if(new_parent)
+
+    logger.debug "menu.parent != new_parent " + (menu.parent != new_parent).to_s
+    if((new_parent_id > 0) && (menu.parent != new_parent))
+      menu.move_to_child_of(new_parent)
+    end
+
+    if(params['position_id'].to_i > 0)
+      sibling = Menu.find_by_id(params['position_id'])
+      logger.debug "sibling: #{sibling.attributes.inspect}"
+      new_position = (sibling.position > menu.position) ? sibling.position - 1 : sibling.position
+      menu.insert_at(new_position)
+    else
+      logger.debug "set menu item as last"
+      if(new_parent_id > 0)
+        logger.debug "move to end of submenu items " + new_parent.children.length.to_s
+        menu.insert_at(new_parent.children.length)
+      else
+        logger.debug "move to end of root menu items " + Menu.roots.length.to_s
+        menu.insert_at(Menu.roots.length)
+      end
+    end
+
+    render nothing: true
   end
 end
