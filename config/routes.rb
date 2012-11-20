@@ -5,7 +5,9 @@ RolfMeier::Application.routes.draw do
 
   resources :pages
 
-  resources :pictures
+  resources :pictures do
+    post :sort
+  end
 
   resources :galleries
 

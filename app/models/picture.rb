@@ -19,6 +19,12 @@ class Picture < ActiveRecord::Base
   # enable history
   has_paper_trail
 
+  # scopes
+  scope :unassigned, where(:gallery_id => nil).order('updated_at desc')
+  def self.assigned(gallery_id)
+    where("gallery_id = ?", gallery_id)
+  end
+
   private
     def default_title
       self.title ||= File.basename(image.filename, '.*').titleize if image

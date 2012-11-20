@@ -4,6 +4,8 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.json
   def index
+    @unassigned_pictures = Picture.unassigned
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @galleries }

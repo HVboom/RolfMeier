@@ -1,5 +1,5 @@
 <div class="picture">
-  <%= link_to image_tag(picture.image_url(:thumb)), picture if picture.image? %>
+  <%= link_to image_tag(picture.image_url(image_version ||= :thumb)), picture if picture.image? %>
   <div class="name"><%= picture.title %></div>
   <div class="actions">
     <%= link_to "edit", edit_picture_path(picture) %> |

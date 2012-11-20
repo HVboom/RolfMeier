@@ -80,28 +80,29 @@ class MenusController < ApplicationController
     new_parent_id = params['parent_id'].to_i
     new_parent = Menu.find_by_id(new_parent_id) if(new_parent_id > 0)
 
-    logger.debug "new_parent_id > 0 " + (new_parent_id > 0).to_s
+    # logger.debug "new_parent_id > 0 " + (new_parent_id > 0).to_s
 
-    logger.debug "menu: #{menu.attributes.inspect}"
-    logger.debug "new parent: #{new_parent.attributes.inspect}" if(new_parent)
+    # logger.debug "menu: #{menu.attributes.inspect}"
+    # logger.debug "new parent: #{new_parent.attributes.inspect}" if(new_parent)
 
-    logger.debug "menu.parent != new_parent " + (menu.parent != new_parent).to_s
+    # logger.debug "menu.parent != new_parent " + (menu.parent != new_parent).to_s
     if((new_parent_id > 0) && (menu.parent != new_parent))
       menu.move_to_child_of(new_parent)
     end
 
     if(params['position_id'].to_i > 0)
       sibling = Menu.find_by_id(params['position_id'])
-      logger.debug "sibling: #{sibling.attributes.inspect}"
+      # logger.debug "sibling: #{sibling.attributes.inspect}"
+      # if the move goes down the list, the insert has to be done before the sibling, instead of the sibling position
       new_position = (sibling.position > menu.position) ? sibling.position - 1 : sibling.position
       menu.insert_at(new_position)
     else
-      logger.debug "set menu item as last"
+      # logger.debug "set menu item as last"
       if(new_parent_id > 0)
-        logger.debug "move to end of submenu items " + new_parent.children.length.to_s
+        # logger.debug "move to end of submenu items " + new_parent.children.length.to_s
         menu.insert_at(new_parent.children.length)
       else
-        logger.debug "move to end of root menu items " + Menu.roots.length.to_s
+        # logger.debug "move to end of root menu items " + Menu.roots.length.to_s
         menu.insert_at(Menu.roots.length)
       end
     end

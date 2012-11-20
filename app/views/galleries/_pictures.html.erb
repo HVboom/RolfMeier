@@ -1,0 +1,17 @@
+<h4><%= title %></h4>
+
+<div class="row" >
+  <div class="film span12" >
+    <ul id="gallery_<%= gallery_id %>" class="gallery sortable" >
+      <%- if pictures.empty? %>
+        <li />
+      <%- else %>
+        <% pictures.each do |picture| %>
+          <%= content_tag_for :li, picture, { :data => { :update_url => picture_sort_url(picture.id) } } do %>
+            <%= render :partial => "pictures/picture", :locals => { :picture => picture, :image_version => :small } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

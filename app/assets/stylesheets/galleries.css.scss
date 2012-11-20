@@ -1,3 +1,28 @@
 // Place all the styles related to the Galleries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.film {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .picture {
+    display: inline-block;
+    float: none; /* Very important */
+    // center vertical and horizontal
+    margin: auto;
+  }
+}
+
+.scroll-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  height: 300px;
+
+  .galleries {
+    display: inline-block;
+    float: none; /* Very important */
+  }
+}
+

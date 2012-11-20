@@ -35,7 +35,7 @@ jQuery ->
     items: "> li"
     axis: "x"
     placeholder: "ui-state-highlight"
-    cursor: 'move'
+    cursor: "move"
     # handle: ".handle"
     update: (event, ui) ->
       update_menu(event, ui)
@@ -46,7 +46,7 @@ jQuery ->
     connectWith: "ul"
     dropOnEmpty: true
     placeholder: "ui-state-highlight"
-    cursor: 'move'
+    cursor: "move"
     # handle: ".handle"
     update: (event, ui) ->
       update_menu(event, ui)

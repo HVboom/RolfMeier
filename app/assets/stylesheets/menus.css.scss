@@ -23,12 +23,12 @@
     margin-left: 5%;
     // width: 100%;
   }
-}
 
-.ui-state-highlight {
-}
+  .ui-state-highlight {
+    // do some highlighting, if not using the jquery-ui-rails gem
+  }
 
   .handle:hover {
     cursor: move;
   }
-
+}
