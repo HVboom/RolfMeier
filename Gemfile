@@ -48,6 +48,8 @@ gem "acts_as_list"
 gem 'acts_as_ordered_tree'
 # User friendly page URLs
 gem 'friendly_id'
+# Simple markdown
+gem 'redcarpet'
 
 group :development do
   # To use debugger

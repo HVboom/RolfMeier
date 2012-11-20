@@ -1,0 +1,23 @@
+<% for menuItem in Menu.roots %>
+  <ul class="select">
+    <li>
+      <% if menuItem.page.nil? %>
+        <%= link_to(menuItem.title, "#") %>
+      <% else %>
+        <%= link_to(menuItem.title, menuItem.page) %>
+      <% end %>
+
+      <% if not menuItem.children.empty? %>
+        <ul class="sub">
+          <% for subMenuItem in menuItem.children %>
+            <% if not subMenuItem.page.nil? %>
+              <li>
+                <%= link_to(subMenuItem.title, subMenuItem.page) %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+    </li>
+  </ul>
+<% end %>

@@ -1,4 +1,8 @@
-<h4><%= title %></h4>
+<%- if(gallery_id > 0) %>
+  <h4><%= link_to title, { :controller => 'galleries', :action => 'edit', :id => gallery_id } %></h4>
+<%- else %>
+  <h4><%= title %></h4>
+<% end %>
 
 <div class="row" >
   <div class="film span12" >

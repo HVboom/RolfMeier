@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+
+    <%= render "meta" %>
+
+    <title>Rolf Meier - Inneneinrichtungen</title>
+
+    <%= stylesheet_link_tag "pages", :media => "all" %>
+    <%= stylesheet_link_tag "rcarousel", :media => "all" %>
+    <%= stylesheet_link_tag "ui-lightness/jquery-ui-1.8.16.custom", :media => "all" %>
+    <%= stylesheet_link_tag "lightbox", :media => "all" %>
+
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "jquery.ui.widget.js" %>
+    <%= javascript_include_tag "jquery.ui.rcarousel.js" %>
+    <%= javascript_include_tag "jquery.ui.rlightbox.js" %>
+
+    <script language="JavaScript">
+      $(
+        function() {
+          $( ".lb_gallery" ).rlightbox({
+            keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]},
+            loop: true
+          });
+
+          $( "#slides" ).rcarousel({
+            auto:    {enabled: true},
+            width:   270,
+            height:  150,
+            margin:  40,
+            visible: 2,
+            step:    2
+          });
+        }
+      );
+    </script>
+  </head>
+  <body id="unternehmen">
+    <div id="wrapper">
+      <div id="top">
+        <div id="logo">
+          <%= link_to(image_tag("logo_rolf-meier.png", :size => "212x66", :alt => "Rolf Meier - Inneneinrichtungen", :boarder => 0), root_url()) %>
+        </div>
+        <div id="naviTop">
+          <div id="nav">
+            <%= render :partial => 'menu', :locals => { :page => @page } %>
+          </div>
+        </div>
+      </div>
+      <div id="container">
+        <div id="content">
+          <div id="inhalt">
+            <div id="bilder">
+              <h1><%= yield(:title) %></h1>
+              <% if(@page.slide_show?) %>
+                <div id="slides">
+                  <%= yield(:slides) %>
+                </div>
+              <% else %>
+                <div id="content">
+                  <%= yield(:content) %>
+                </div>
+              <% end %>
+            </div>
+            <div id="text">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+        <div id="bottom">
+          <div id="bildBottom">
+            <%= image_tag("logo_wohntraeume.png", :size => "212x19", :alt => "Wir kreieren Wohnträume") %>
+          </div>
+          <div id="inhaltBottom">
+            <% if Page.contact %>
+              <%= link_to(page_path(Page.contact)) do %>
+                &copy; 1999 - <%= Date.today.year %> Rolf Meier Inneneinrichtungen AG | 044-724 39 19
+              <% end %>
+            <% else %>
+                &copy; 1999 - <%= Date.today.year %> Rolf Meier Inneneinrichtungen AG | 044-724 39 19
+            <% end %>
+            |
+            <%= mail_to("info@rolf-meier.ch", nil, :class => "email") %>
+            <%# markdown("<info@rolf-meier.ch>") %>
+            |
+            <% if Page.impressum %>
+              <%= link_to(page_path(Page.impressum)) %>
+            <% else %>
+              impressum
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

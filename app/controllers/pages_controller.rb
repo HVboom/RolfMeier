@@ -15,9 +15,14 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @page }
+    # redirect to actual user friendly URL, e.g. pages/4 => pages/kontakt
+    if request.path != page_path(@page)
+      redirect_to @page, status: :moved_permanently
+    else
+      respond_to do |format|
+        format.html { render :layout => 'showroom' } # show.html.erb
+        format.json { render json: @page }
+      end
     end
   end
 
