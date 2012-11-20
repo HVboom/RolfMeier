@@ -20,7 +20,8 @@ class Picture < ActiveRecord::Base
   has_paper_trail
 
   # scopes
-  scope :unassigned, where(:gallery_id => nil).order('updated_at desc')
+  scope :newest, order('updated_at desc')
+  scope :unassigned, where(:gallery_id => nil).newest
   def self.assigned(gallery_id)
     where("gallery_id = ?", gallery_id)
   end

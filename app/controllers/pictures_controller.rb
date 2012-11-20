@@ -4,6 +4,8 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
+    @pictures = Picture.newest
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pictures }
@@ -79,29 +81,30 @@ class PicturesController < ApplicationController
     new_gallery_id = params['gallery_id'].to_i
     new_gallery = Gallery.find_by_id(new_gallery_id) if(new_gallery_id > 0)
 
-    logger.debug "new_gallery_id > 0 " + (new_gallery_id > 0).to_s
+    # logger.debug "new_gallery_id > 0 " + (new_gallery_id > 0).to_s
 
-    logger.debug "picture: #{picture.attributes.inspect}"
-    logger.debug "new gallery: #{new_gallery.attributes.inspect}" if(new_gallery)
+    # logger.debug "picture: #{picture.attributes.inspect}"
+    # logger.debug "new gallery: #{new_gallery.attributes.inspect}" if(new_gallery)
 
-    logger.debug "picture.gallery != new_gallery " + (picture.gallery != new_gallery).to_s
+    # logger.debug "picture.gallery != new_gallery " + (picture.gallery != new_gallery).to_s
     if(picture.gallery != new_gallery)
       if(new_gallery_id > 0)
         picture.gallery = new_gallery
       else
         picture.gallery = nil
       end
+      # picture.position = 0
       picture.save
     end
 
     if(params['position_id'].to_i > 0)
       sibling = Picture.find_by_id(params['position_id'])
-      logger.debug "sibling: #{sibling.attributes.inspect}"
+      # logger.debug "sibling: #{sibling.attributes.inspect}"
       # if the move goes down the list, the insert has to be done before the sibling, instead of the sibling position
       new_position = (sibling.position > picture.position) ? sibling.position - 1 : sibling.position
       picture.insert_at(new_position)
     else
-      logger.debug "set picture as last"
+      # logger.debug "set picture as last"
       picture.move_to_bottom()
     end
 
