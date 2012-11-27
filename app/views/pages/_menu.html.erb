@@ -1,5 +1,5 @@
-<% for menuItem in Menu.roots %>
-  <ul class="select">
+<ul class="menu">
+  <% for menuItem in Menu.roots %>
     <li>
       <% if menuItem.page.nil? %>
         <%= link_to(menuItem.title, "#") %>
@@ -19,5 +19,5 @@
         </ul>
       <% end %>
     </li>
-  </ul>
-<% end %>
+  <% end %>
+</ul>

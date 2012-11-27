@@ -2,366 +2,187 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// include Bootstrap styles
 @import "bootstrap";
+@import "bootstrap-responsive";
+
+/* Configuration */
+$fontFamily: Georgia, "Times New Roman", Times, serif;
+$fontSize: 14px;
+$subFontSize: 12px;
+$footerFontSize: 12px;
+$h1FontSize: 16px;
+$bodyBgColor: #3a3734;
+$navBgColor: #4d4a47;
+$navColor: #f5f2ee; // #c5b8aa;
+$navHighlightColor: #7e766d;
+$navActiveColor: #7e766d;
+$articleBgColor: #d6d6d6;
+$asideBgColor: #e4e4e4;
+
+@mixin setOpacity($opacity) {
+  filter:alpha(opacity = $opacity);
+  moz-opacity: $opacity;
+  opacity: $opacity;
+}
 
 /* Grundformatierung */
 * {
-  margin: 0px 0px 0px;
+  margin: 0;
+  border: 0;
 }
+
 body {
-  background: image-url("body_bg.png") repeat left top;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: #3a3734;
-  font-size: 13px;
-}
-#wrapper {
-  height: 700px;
-  width: 1024px;
-  position: relative;
-  background: image-url("wrapper_bg_02.png") repeat-x left 146px;
+  background-image: image-url("body_bg.png");
+  font-family: $fontFamily;
+  color: $bodyBgColor;
+  font-size: $fontSize;
 }
 
-/* Layout Bereich oben */
+#rolf_meier {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 10%;
+  max-width: 100%;
 
-#top {
-  height: 100px;
-  width: 860px;
-  position: absolute;
-  left: 82px;
-  top: 46px;
-  background:#4d4a47;
-}
-#top #logo {
-  float: left;
-  padding-top: 18px;
-  padding-left: 15px;
-}
-#top #naviTop {
-  float: right;
-  height: 66px;
-  width: 560px;
-  padding-top: 30px;
-}
+  header {
+    background: $navBgColor;
+    min-height: 20%;
+    margin-left: 10%;
+    max-width: 85%;
 
-/* Navigation oben */
+    .logo {
+      padding: 2%;
+    }
 
-#nav {
-  position:relative;
-  font-weight: normal;
-}
-#nav .select, #nav .current {
-  margin:0;
-  padding:0;
-  list-style:none;
-}
-#nav li {
-  display:inline;
-  margin:0;
-  padding:0;
-  height:auto;
-}
-#nav .select a, #nav .current a {
-  display:block;
-  height:20px;
-  float:left;
-  padding:0 20px;
-  text-decoration:none;
-  font-size:14px;
-  line-height:20px;
-  white-space:nowrap;
-  color:#f5f2ee;
-}
-* html #nav .select a, * html #nav .current a {
-  width:1px;
-  height:30px;
-}
-#nav .select a:hover, #nav .select li:hover a {
-  cursor:pointer;
-  color:#c5b8aa;
-}
-#nav .sub {
-  display:none;
-}
+    nav {
+      padding-top: 4%;
 
-#nav .sub li a:hover, #nav .select a:hover .sub li a:hover, #nav .select li:hover .sub li a:hover {
-  color:#c5b8aa;
-}
-#nav .sub_active .current_sub a, #nav .sub_active a:hover {
-  color:#7e766d;
-}
-#nav .select li a:hover .sub, #nav .select li:hover .sub {
-  display:block;
-  position:absolute;
-  width:560px;
-  top:20px;
-  left:0;
-  margin-top:0;
-  padding:0;
-  z-index:100;
-  color:#7e766d;
-  font-size:11px;
-}
-#nav .sub, #nav .sub_active {
-  margin:0;
-  padding:0;
-  list-style:none;
-}
-#nav .sub_active {
-  display:block;
-  position:absolute;
-  width:560px;
-  top:20px;
-  left:0;
-  margin-top:0;
-  padding:0;
-  z-index:10;
-  color:#f5f2ee;
-}
-* html #nav .sub_active, * html #nav .select a:hover .sub {
-  z-index:-1;
-  margin-top:0;
-  margin-top:1px;
-}
-#nav .sub_active a {
-  height:21px;
-  text-decoration:none;
-  line-height:20px;
-  white-space:nowrap;
-  display:block;
-  float:left;
-  padding:5px 15px 10px 25px;
-  margin:0;
-  font-size:12px;
-  white-space:nowrap;
-  border:0;
-  color:#c5b8aa;
-}
-#nav .select a:hover .sub li a, #nav .select li:hover .sub li a {
-  display:block;
-  padding:5px 10px 10px 20px;
-  margin:0;
-  white-space:nowrap;
-  border:0;
-  color:#f5f2ee;
-  font-size:12px;
-}
-#unternehmen a#menu1, #dienstleistung a#menu2, #produkte a#menu3, #kontakt a#menu4, #aktuell a#menu5 {
-  color: #c5b8aa;
-}
+      li {
+        display: inline;
+        list-style: none;
+        padding-right: 5%;
 
-/* Navigation nur für IE5.5 und IE6 */
+        .sub {
+          display: none;
+        }
 
-#nav table {
-  position:absolute;
-  border-collapse:collapse;
-  left:0;
-  top:0;
-}
-#nav .current a {
-  color:#f5f2ee;
-}
+        a {
+          text-decoration: none;
+          font-size: $fontSize;
+          white-space: nowrap;
+          color: $navColor;
 
-/* a links allgmeine */
+          &:hover, &:active {
+            cursor: pointer;
+            color: $navHighlightColor;
 
-a {
-  color: #4d4a47;
-}
-a:hover {
-  font-weight: normal;
-  color: #c5b8aa;
-}
+            .sub {
+              color: $navHighlightColor;
+              font-size: $subFontSize;
+              display: block;
+              list-style: none;
+            }
+          }
+        }
+      }
+    }
+  }
 
-/* Layout mittlerer Bereich */
+  > div {
+    background-image: image-url("wrapper_bg_02.png");
+    //min-height: 50%;
+    // max-height: 70%;
+    //height: 370px;
 
-#container {
-  margin-left: 82px;
-  top: 170px;
-  position: relative;
-  float: left;
-  height: auto;
-  clear: both;
-}
-#content {
-  height: 372px;
-  width: 860px;
-  clear: both;
-}
-#inhalt {
-  height: 280px;
-  width: 860px;
-  margin-top: 70px;
-  background: image-url("inhalt_bg_01.png") repeat-y top;
-}
-#inhalt #bilder {
-  float: left;
-  height: 240px;
-  width: 600px;
-  padding-top: 10px;
-  padding-left: 17px;
-  font-size: 13px;
-  line-height: 20px;
-}
-#inhalt #bilder h1 {
-  font-size: 16px;
-  font-style: normal;
-  letter-spacing: 0.65px;
-  font-weight: normal;
-  border-bottom: 1px dotted #4d4a47;
-  width: 580px;
-}
-#inhalt #bilder #slides {
-  position:relative;
-  width:580px;
-  height:163px;
-  float:left;
-  overflow:hidden;
-  z-index:1;
-  padding-top: 40px;
+    section {
+      background-color: white;
+      margin-top: 5%;
+      margin-left: 7.5%;
+      margin-right: 7.5%;
 
-  .wrapper {
-    margin-left: 60px;
+      article.text, aside.slide_show, aside.map {
+        @include setOpacity(0.5);
+        background-color: white;
+        margin-bottom: 5%;
+
+        h1 {
+          background-color: white;
+          font-size: $h1FontSize;
+          letter-spacing: 0.65px;
+          border-bottom: 1px dotted $navBgColor;
+        }
+      }
+
+      article.text {
+        div {
+          background-color: white;
+          margin-top: 5%;
+          padding-left: 2.5%;
+          padding-right: 2.5%;
+          overflow-y: auto;
+          max-height: 280px;
+        }
+      }
+
+      aside.slide_show {
+        div.wrapper {
+          @include setOpacity(1.0);
+          margin-left: 10%;
+          padding-bottom: 5%;
+        }
+      }
+
+      aside.text, article.slide_show, article.map {
+        @include setOpacity(0.8);
+        background-color: white;
+        margin-bottom: 5%;
+
+        padding-top: 4%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        padding-bottom: 4%;
+        text-align: right;
+      }
+    }
+  }
+
+  footer {
+    background: $navBgColor;
+    min-height: 10%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+    max-width: 85%;
+
+    .logo {
+      padding-top: 1%;
+      padding-left: 2%;
+      padding-bottom: 1%;
+    }
+
+    nav {
+      padding-top: 1.5%;
+      font-size: $footerFontSize;
+      color: $navColor;
+
+      li {
+        display: inline;
+        list-style: none;
+
+        a {
+          text-decoration: none;
+          color: $navColor;
+
+          &:hover, &:active {
+            cursor: pointer;
+            color: $navHighlightColor;
+          }
+
+          .nowrap {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
   }
 }
 
-#inhalt #bilder #content {
-  position:relative;
-  width:580px;
-  height:163px;
-  float:left;
-  overflow: auto;
-  z-index:1;
-  padding-top: 40px;
-
-  .wrapper {
-    margin-left: 60px;
-  }
-}
-
-#inhalt #text {
-  float: right;
-  width: 211px;
-  height: 240px;
-  padding-top: 25px;
-  padding-right: 17px;
-  text-align: right;
-  font-size: 13px;
-  line-height: 20px;
-  padding-left: 10px;
-
-  /* overwrite bootstrap popover styling */
-  p {
-    font-family: Georgia, "Times New Roman", Times, serif;
-  }
-}
-/* overwrite bootstrap popover styling */
-.popover p {
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-#longtext { /* für den popup text*/
-  background: #f5f2ee;
-  line-height: 22px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-/* Positionierung navigations-tabs text rechte seite */
-
-#feld {
-  float: right;
-}
-
-/* Layout unterer Bereich bottom */
-
-#bottom {
-  height: 36px;
-  width: 860px;
-  background: #4d4a47;
-  position: relative;
-}
-#bottom #inhaltBottom {
-  float: left;
-  margin-top: 10px;
-  width: auto;
-  height: auto;
-  color: #f5f2ee;
-  font-weight: normal;
-  font-size: 12px;
-}
-#bottom #bildBottom {
-  padding-left: 15px;
-  float: left;
-  margin-top: 8px;
-  padding-right: 80px;
-}
-
-#bottom #inhaltBottom a {
-  text-decoration: none;
-  color: #f5f2ee;
-}
-#bottom #inhaltBottom a:hover {
-  cursor:pointer;
-  color:#c5b8aa;
-}
-
-/* Formulardaten */
-
-#formular1 {
-  margin-top: 10px;
-  float: left;
-  width: 250px;
-}
-#formular2 {
-  margin-top: 10px;
-  float: right;
-  width: 250px;
-  margin-right: 47px;
-}
-form {
-  width: auto;
-}
-label
-{
-  display: block;
-  padding: 8px 0 2px;
-}
-textarea#mitteilung
-{
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 14px;
-  color: #4d4a47;
-  width: 250px;
-  height: 80px;
-  border: 0.25px solid #c5b8aa;
-}
-input#name, #vorname, #mail , #adresse, #plzOrt{
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 14px;
-  color: #4d4a47;
-  width: 250px;
-  border: 0.25px solid #c5b8aa;
-}
-input#newsletter, #brochure
-{
-  margin-right: 5px;
-}
-input#brochure
-{
-  margin-left: 60px;
-}
-input#senden {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 14px;
-  color: #f5f2ee;
-  width: 60px;
-  padding: 1px 0;
-  background: #4d4a47;
-  border: 0.5px solid #c5b8aa;
-  margin-top: 5px;
-}
-#longtext p, #inhalt p {
-  padding-bottom: 10px;
-}
