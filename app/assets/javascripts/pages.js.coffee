@@ -3,10 +3,26 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 #= require jquery
+#= require jquery.ui.widget
+#= require jquery.ui.rlightbox
+#= require jquery.ui.rcarousel
 #= require bootstrap
 
 jQuery ->
+  $('.lb_gallery').rlightbox({
+    keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
+    loop: true
+  })
+
+  $('.carousel').carousel({
+    cycle:    'cycle'
+    interval: 4000
+    pause:    'hover'
+  })
+
   $('[rel=popover]').popover({
     placement: 'left'
     html:       true
   })
+
+  $('.dropdown-toggle').dropdown()

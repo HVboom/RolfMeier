@@ -3,11 +3,27 @@
 <% end %>
 
 <% content_for :slides do %>
-  <% for picture in @page.pictures %>
-    <% if picture.image? %>
-      <%= link_to(image_tag(picture.image_url(:thumb)), picture.image_url(:normal), :class => 'lb_gallery', :title => picture.title) %>
-    <% end %>
-  <% end %>
+  <div class="row-fluid">
+    <div class="carousel slide" id="slide_show">
+      <div class="carousel-inner">
+        <ul class="item active">
+          <% $i = 0 %>
+          <% for picture in @page.pictures %>
+            <% if picture.image? %>
+              <li class="span6">
+                <%= link_to(image_tag(picture.image_url(:thumb)), picture.image_url(:normal), :class => 'lb_gallery', :title => picture.title) %>
+              </li>
+              <% $i += 1 %>
+            <% end %>
+            <% if ($i % 2) == 0 %>
+              </ul>
+              <ul class="item">
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <% content_for :content do %>

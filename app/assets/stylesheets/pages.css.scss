@@ -19,11 +19,21 @@ $navActiveColor: #7e766d;
 $articleBgColor: #d6d6d6;
 $asideBgColor: #e4e4e4;
 
-@mixin setOpacity($opacity) {
-  filter:alpha(opacity = $opacity);
+@mixin setOpacity($opacity: 1.0) {
+  filter: alpha(opacity = $opacity);
   moz-opacity: $opacity;
   opacity: $opacity;
 }
+
+@mixin setAlpha($alpha: 1.0, $color: white) {
+  $rgbaColor: hsla(hue($color), saturation($color), lightness($color), $alpha);
+  $ieColor: argb($rgbaColor);
+  background-color: transparent;
+  background-color: $rgbaColor;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = $ieColor, endColorstr = $ieColor);
+  zoom: 1;
+}
+
 
 /* Grundformatierung */
 * {
@@ -44,7 +54,7 @@ body {
   margin-right: 10%;
   max-width: 100%;
 
-  header {
+  > header {
     background: $navBgColor;
     min-height: 20%;
     margin-left: 10%;
@@ -90,32 +100,29 @@ body {
 
   > div {
     background-image: image-url("wrapper_bg_02.png");
-    //min-height: 50%;
-    // max-height: 70%;
-    //height: 370px;
+    color: $navBgColor;
 
     section {
-      background-color: white;
       margin-top: 5%;
       margin-left: 7.5%;
       margin-right: 7.5%;
 
       article.text, aside.slide_show, aside.map {
-        @include setOpacity(0.5);
-        background-color: white;
+        @include setAlpha(0.5);
         margin-bottom: 5%;
 
         h1 {
-          background-color: white;
+          line-height: 150%;
           font-size: $h1FontSize;
           letter-spacing: 0.65px;
           border-bottom: 1px dotted $navBgColor;
+          margin-left: 5%;
+          margin-right: 5%;
         }
       }
 
       article.text {
         div {
-          background-color: white;
           margin-top: 5%;
           padding-left: 2.5%;
           padding-right: 2.5%;
@@ -124,17 +131,8 @@ body {
         }
       }
 
-      aside.slide_show {
-        div.wrapper {
-          @include setOpacity(1.0);
-          margin-left: 10%;
-          padding-bottom: 5%;
-        }
-      }
-
       aside.text, article.slide_show, article.map {
-        @include setOpacity(0.8);
-        background-color: white;
+        @include setAlpha(0.8);
         margin-bottom: 5%;
 
         padding-top: 4%;

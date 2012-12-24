@@ -49,7 +49,7 @@
               <h1><%= yield(:title) %></h1>
             </header>
 
-            <div>
+            <div class="container-fluid">
               <%= yield(:slides) %>
             <div>
           </aside>
@@ -115,11 +115,6 @@
     </footer>
 
     <!-- local srcipts -->
-    <% if @page.long_text? %>
-      <%= javascript_include_tag "pages" %>
-    <% end %>
-    <% if(@page.slide_show?) %>
-      <%= javascript_include_tag "slide_show" %>
-    <% end %>
+    <%= javascript_include_tag "pages" %>
   </body>
 </html>
