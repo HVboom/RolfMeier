@@ -49,9 +49,9 @@ body {
 }
 
 #rolf_meier {
-  margin-top: 5%;
-  margin-left: 5%;
-  margin-right: 10%;
+  margin-top: 3%;
+  margin-left: 0%;
+  margin-right: 5%;
   max-width: 100%;
 
   > header {
@@ -65,18 +65,54 @@ body {
     }
 
     nav {
-      padding-top: 4%;
+      padding-top: 2.5%;
+      padding-right: 0.5%;
 
       li {
+        a {
+          text-shadow: none;
+          white-space: nowrap;
+          color: $navColor;
+
+          &:hover, &:active {
+            color: $navHighlightColor;
+          }
+        }
+      }
+
+      .dropdown-toggle {
+        background-color: transparent;
+      }
+
+      .dropdown-menu {
+        background-image: image-url("body_bg.png");
+        min-width: 100%;
+
+        a {
+          font-size: $subFontSize;
+          color: $navBgColor;
+
+          &:hover, &:active {
+            background: none;
+            color: $navHighlightColor;
+          }
+        }
+      }
+    }
+
+    nav1 {
+      padding-top: 4%;
+
+      li1 {
         display: inline;
         list-style: none;
         padding-right: 5%;
 
-        .sub {
+        .sub1 {
           display: none;
         }
 
-        a {
+        a1 {
           text-decoration: none;
           font-size: $fontSize;
           white-space: nowrap;
@@ -86,7 +122,7 @@ body {
             cursor: pointer;
             color: $navHighlightColor;
 
-            .sub {
+            .sub1 {
               color: $navHighlightColor;
               font-size: $subFontSize;
               display: block;
@@ -159,6 +195,7 @@ body {
 
     nav {
       padding-top: 1.5%;
+      padding-right: 2%;
       font-size: $footerFontSize;
       color: $navColor;
 

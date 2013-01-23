@@ -9,13 +9,11 @@
         <ul class="item active">
           <% $i = 0 %>
           <% for picture in @page.pictures %>
-            <% if picture.image? %>
-              <li class="span6">
-                <%= link_to(image_tag(picture.image_url(:thumb)), picture.image_url(:normal), :class => 'lb_gallery', :title => picture.title) %>
-              </li>
-              <% $i += 1 %>
-            <% end %>
-            <% if ($i % 2) == 0 %>
+            <li class="span6">
+              <%= link_to(image_tag(picture.image_url(:thumb)), picture.image_url(:normal), :class => 'lb_gallery', :title => picture.title) %>
+            </li>
+            <% $i += 1 %>
+            <% if (($i % 2) == 0) and ($i < @page.pictures.count) %>
               </ul>
               <ul class="item">
             <% end %>

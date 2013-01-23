@@ -22,7 +22,8 @@ jQuery ->
 
   $('[rel=popover]').popover({
     placement: 'left'
-    html:       true
+    html:      true
+    trigger:   'hover'
   })
 
   $('.dropdown-toggle').dropdown()

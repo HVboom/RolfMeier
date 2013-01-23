@@ -36,7 +36,7 @@
         <%= link_to(image_tag("logo_rolf-meier.png", :size => "212x66", :alt => "Rolf Meier - Inneneinrichtungen", :boarder => 0), root_url()) %>
       </span>
 
-      <nav class="offset2">
+      <nav class="offset2 navbar">
         <%= render :partial => 'menu', :locals => { :page => @page } %>
       </nav>
     </header>
@@ -81,7 +81,7 @@
       </span>
 
       <nav>
-        <ul>
+        <ul class="pull-right">
           <li>
             <% if Page.contact %>
               <%= link_to(page_path(Page.contact)) do %>

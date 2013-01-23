@@ -1,4 +1,4 @@
-<ul class="nav" role="navigation">
+<ul class="nav pull-right" role="navigation">
   <% for menuItem in Menu.roots %>
     <% unless menuItem.children.empty? %>
       <%= content_tag :li, :class => "dropdown" do %>
