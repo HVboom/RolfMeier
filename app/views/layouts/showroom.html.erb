@@ -45,31 +45,35 @@
       <section id="main" role="main">
         <% if(@page.slide_show? || @page.map?) %>
           <aside class="<%= @page.content_type %> span8">
-            <header>
-              <h1><%= yield(:title) %></h1>
-            </header>
+            <div class="content">
+              <header>
+                <h1><%= yield(:title) %></h1>
+              </header>
 
-            <div class="container-fluid">
               <%= yield(:slides) %>
             <div>
           </aside>
 
           <article class="<%= @page.content_type %> span4">
-            <%= yield %>
+            <div class="content">
+              <%= yield %>
+            <div>
           </article>
         <% else %>
           <article class="<%= @page.content_type %> span8">
-            <header>
-              <h1><%= yield(:title) %></h1>
-            </header>
+            <div class="content">
+              <header>
+                <h1><%= yield(:title) %></h1>
+              </header>
 
-            <div>
               <%= yield(:content) %>
             </div>
           </article>
 
           <aside class="<%= @page.content_type %> span4">
-            <%= yield %>
+            <div class="content">
+              <%= yield %>
+            </div>
           </aside>
         <% end %>
       </section>

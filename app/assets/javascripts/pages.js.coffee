@@ -7,6 +7,7 @@
 #= require jquery.ui.rlightbox
 #= require jquery.ui.rcarousel
 #= require bootstrap
+#= require jquery.eqheight
 
 jQuery ->
   $('.lb_gallery').rlightbox({
@@ -27,3 +28,5 @@ jQuery ->
   })
 
   $('.dropdown-toggle').dropdown()
+
+  $('#main').eqHeight()

@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$gridGutterWidth: 0px;
+$gridGutterWidth768: 0px;
+$gridGutterWidth1200: 0px;
+
 @import "bootstrap";
 @import "bootstrap-responsive";
 
@@ -139,21 +143,27 @@ body {
     color: $navBgColor;
 
     section {
-      margin-top: 5%;
-      margin-left: 7.5%;
-      margin-right: 7.5%;
+      margin: 2.5% 7.5%;
 
       article.text, aside.slide_show, aside.map {
         @include setAlpha(0.5);
-        margin-bottom: 5%;
 
-        h1 {
-          line-height: 150%;
-          font-size: $h1FontSize;
-          letter-spacing: 0.65px;
-          border-bottom: 1px dotted $navBgColor;
-          margin-left: 5%;
-          margin-right: 5%;
+        .content {
+          margin: 2.5% 5%;
+
+          h1 {
+            line-height: 150%;
+            font-size: $h1FontSize;
+            letter-spacing: 0.65px;
+            border-bottom: 1px dotted $navBgColor;
+          }
+
+          img {
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
       }
 
@@ -169,13 +179,12 @@ body {
 
       aside.text, article.slide_show, article.map {
         @include setAlpha(0.8);
-        margin-bottom: 5%;
+        margin-bottom: 2.5%;
 
-        padding-top: 4%;
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-        padding-bottom: 4%;
-        text-align: right;
+        .content {
+          margin: 10%;
+          text-align: right;
+        }
       }
     }
   }
