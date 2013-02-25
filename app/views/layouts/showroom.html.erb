@@ -51,13 +51,13 @@
               </header>
 
               <%= yield(:slides) %>
-            <div>
+            </div>
           </aside>
 
           <article class="<%= @page.content_type %> span4">
             <div class="content">
               <%= yield %>
-            <div>
+            </div>
           </article>
         <% else %>
           <article class="<%= @page.content_type %> span8">

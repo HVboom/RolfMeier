@@ -3,6 +3,30 @@
 <% end %>
 
 <% content_for :slides do %>
+  <div class="container-fluid">
+    <div class="row-fluid span12">
+      <div class="carousel slide" id="slide_show">
+        <div class="carousel-inner">
+          <ul class="item active thumbnails">
+            <% $i = 0 %>
+            <% for picture in @page.pictures %>
+              <li class="span6">
+                <%= link_to(image_tag(picture.image_url(:thumb), :class => 'img-polaroid'), picture.image_url(:normal), :class => 'lb_gallery', :title => picture.title) %>
+              </li>
+              <% $i += 1 %>
+              <% if (($i % 2) == 0) and ($i < @page.pictures.count) %>
+          </ul>
+          <ul class="item thumbnails">
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :slides_SAVE do %>
   <div class="row-fluid span12">
     <div class="carousel slide" id="slide_show">
       <div class="carousel-inner">

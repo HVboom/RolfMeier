@@ -25,7 +25,7 @@ end
 
 # Rich UI
 gem 'jquery-rails'
-gem "bootstrap-sass", ">= 2.1.0.0"
+gem "bootstrap-sass", "~> 2.3.0.1"
 gem "simple_form", ">= 2.0.2"
 
 # Authorisation and authentication

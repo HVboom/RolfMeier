@@ -29,4 +29,4 @@ jQuery ->
 
   $('.dropdown-toggle').dropdown()
 
-  $('#main').eqHeight()
+  $('#main').eqHeight("article, aside")
