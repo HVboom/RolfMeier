@@ -81,8 +81,24 @@ vendor/values_for/
 vendor/assets/javascripts/jquery.ui.rcarousel.min.js
 vendor/assets/javascripts/jquery.ui.rlightbox.min.js
 vendor/assets/stylesheets/lightbox.min.css
+<<<<<<< HEAD
 *.lock
 
 *.erb Kopie
+=======
+vendor/assets/stylesheets/rcarousel.css
+vendor/assets/stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css
+*.lock
+
+*.lock
+
+Gemfile.lock
+
+*.lock
+
+Gemfile.lock
+
+*.lock
+>>>>>>> Prepare for Apache hosting
 
 Gemfile.lock
