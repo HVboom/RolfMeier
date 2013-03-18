@@ -84,3 +84,5 @@ vendor/assets/stylesheets/lightbox.min.css
 *.lock
 
 *.erb Kopie
+
+Gemfile.lock
