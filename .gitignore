@@ -102,3 +102,7 @@ Gemfile.lock
 >>>>>>> Prepare for Apache hosting
 
 Gemfile.lock
+
+*.lock
+
+Gemfile.lock
