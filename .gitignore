@@ -81,3 +81,6 @@ vendor/values_for/
 vendor/assets/javascripts/jquery.ui.rcarousel.min.js
 vendor/assets/javascripts/jquery.ui.rlightbox.min.js
 vendor/assets/stylesheets/lightbox.min.css
+*.lock
+
+*.erb Kopie
