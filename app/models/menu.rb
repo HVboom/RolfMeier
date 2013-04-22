@@ -6,7 +6,10 @@ class Menu < ActiveRecord::Base
   has_one :page, :inverse_of => :menu
 
   # mass assignment
-  attr_accessible :title, :position, :parent_id
+  attr_accessible :title, :is_valid, :position, :parent_id
+
+  # setup default values
+  default_value_for :is_valid, true
 
   # validations
   before_validation :strip_whitespaces
@@ -21,7 +24,10 @@ class Menu < ActiveRecord::Base
   private
     def only_2_menu_levels
       # the parent is itself not a child and there is a parent
-      errors.add(:parent, "only 2 levels are allowed") unless (self.parent.nil? || self.parent.root?)
+      debugger
+      if ((!self.parent.nil? && !self.leaf?) || (!self.parent.root?))
+        errors.add(:parent, "only 2 levels are allowed")
+      end
     end
 
     def strip_whitespaces

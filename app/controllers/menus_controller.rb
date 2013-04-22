@@ -86,6 +86,8 @@ class MenusController < ApplicationController
     # logger.debug "new parent: #{new_parent.attributes.inspect}" if(new_parent)
 
     # logger.debug "menu.parent != new_parent " + (menu.parent != new_parent).to_s
+    menu.valid?
+
     if((new_parent_id > 0) && (menu.parent != new_parent))
       menu.move_to_child_of(new_parent)
     end

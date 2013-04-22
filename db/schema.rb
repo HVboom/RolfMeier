@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009114913) do
+ActiveRecord::Schema.define(:version => 20130420073135) do
 
   create_table "galleries", :force => true do |t|
     t.string   "name"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20121009114913) do
     t.string   "title"
     t.integer  "position"
     t.integer  "parent_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "is_valid",   :default => true
   end
 
   add_index "menus", ["parent_id"], :name => "index_menus_on_parent_id"
@@ -43,6 +44,9 @@ ActiveRecord::Schema.define(:version => 20121009114913) do
     t.integer  "menu_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "pages", ["menu_id"], :name => "index_pages_on_menu_id"

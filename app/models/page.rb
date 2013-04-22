@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   belongs_to :menu, :inverse_of => :page
 
   # mass assignment
-  attr_accessible :title, :slug, :short_text, :long_text, :maintainer, :content_type, :content, :menu_id
+  attr_accessible :title, :slug, :short_text, :long_text, :maintainer, :content_type, :content, :address, :menu_id
   attr_accessible :gallery_attributes
   accepts_nested_attributes_for :gallery, :allow_destroy => true
   accepts_nested_attributes_for :pictures
@@ -15,6 +15,13 @@ class Page < ActiveRecord::Base
   # enable user friendly URLs
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  # enable Google maps
+  acts_as_gmappable :process_geocoding => :geocode?,
+    :address => 'address',
+    :normalized_address => 'address',
+    :language => 'de'
+
 
   # validation is automatically done
   values_for :content_type,
@@ -63,4 +70,9 @@ class Page < ActiveRecord::Base
     def strip_whitespaces
       self.title.strip! unless self.title.blank?
     end
+
+    def geocode?
+      (!address.blank? && (latitude.blank? || lngitude.blank?)) || address_changed?
+    end
+
 end

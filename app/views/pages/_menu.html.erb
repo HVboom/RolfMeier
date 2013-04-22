@@ -3,16 +3,16 @@
     <% unless menuItem.children.empty? %>
       <%= content_tag :li, :class => "dropdown" do %>
         <%# link_to("#{menuItem.title} <b class='caret'></b>", "#", :html_options => {:id => "menu_#{menuItem.title}", :role => "button", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}) do %>
-        <%= link_to("#", {:id => "menu_#{menuItem.title}", :role => "button", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}) do %>
-          <%= menuItem.title %>
+        <%= link_to("#", {:id => "menu_#{menuItem.title.downcase}", :role => "button", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}) do %>
+          <%= menuItem.title.downcase %>
           <b class="caret"></b>
         <% end %>
 
-        <ul class="dropdown-menu sub" role="menu" aria-labelledby="menu_<%= menuItem.title %>">
+        <ul class="dropdown-menu sub" role="menu" aria-labelledby="menu_<%= menuItem.title.downcase %>">
           <% for subMenuItem in menuItem.children %>
             <% unless subMenuItem.page.nil? %>
               <li>
-                <%= link_to(subMenuItem.title, subMenuItem.page) %>
+                <%= link_to(subMenuItem.title.downcase, subMenuItem.page) %>
               </li>
             <% end %>
           <% end %>
@@ -20,7 +20,7 @@
       <% end %>
     <% else %>
       <% unless menuItem.page.nil? %>
-        <%= link_to(menuItem.title, menuItem.page) %>
+        <%= link_to(menuItem.title.downcase, menuItem.page) %>
       <% end %>
     <% end %>
   <% end %>

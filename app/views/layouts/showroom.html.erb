@@ -24,6 +24,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-57-precomposed.png">
 
     <!-- Le fav and touch icons -->
+    <%# stylesheet_link_tag "gmaps4rails", :media => "all" %>
     <%= stylesheet_link_tag "pages", :media => "all" %>
     <%= stylesheet_link_tag "rcarousel", :media => "all" %>
     <%= stylesheet_link_tag "ui-lightness/jquery-ui-1.8.16.custom", :media => "all" %>
@@ -46,11 +47,13 @@
         <% if(@page.slide_show? || @page.map?) %>
           <aside class="<%= @page.content_type %> span8">
             <div class="content">
-              <header>
-                <h1><%= yield(:title) %></h1>
-              </header>
-
-              <%= yield(:slides) %>
+              <% if(@page.slide_show?) %>
+                <%= yield(:content_header) %>
+                <%= yield(:slides) %>
+              <% else %>
+                <%= yield(:map_content_header) %>
+                <%= yield(:map) %>
+              <% end %>
             </div>
           </aside>
 
@@ -62,9 +65,7 @@
         <% else %>
           <article class="<%= @page.content_type %> span8">
             <div class="content">
-              <header>
-                <h1><%= yield(:title) %></h1>
-              </header>
+              <%= yield(:content_header) %>
 
               <%= yield(:content) %>
             </div>
@@ -120,5 +121,8 @@
 
     <!-- local srcipts -->
     <%= javascript_include_tag "pages" %>
+    <% if(@page.map?) %>
+      <%= yield :scripts %>
+    <% end %>
   </body>
 </html>

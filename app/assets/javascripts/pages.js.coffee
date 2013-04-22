@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+#= require gmaps4rails/gmaps4rails.base
+#= require gmaps4rails/gmaps4rails.googlemaps
 #= require jquery
 #= require jquery.ui.widget
 #= require jquery.ui.rlightbox

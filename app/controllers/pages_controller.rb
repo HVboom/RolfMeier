@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PagesController < ApplicationController
   load_and_authorize_resource :except => [:show]
   load_resource :only => [:show]
@@ -15,6 +17,12 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    unless @page.address.blank?
+      @map = @page.to_gmaps4rails do |page, marker|
+        marker.infowindow render_to_string(:partial => 'infowindow', :locals => {:page => page})
+        marker.title page.address
+      end
+    end
     # redirect to actual user friendly URL, e.g. pages/4 => pages/kontakt
     if request.path != page_path(@page)
       redirect_to @page, status: :moved_permanently

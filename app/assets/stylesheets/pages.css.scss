@@ -168,6 +168,23 @@ body {
             margin-left: 5%;
             margin-right: 5%;
           }
+
+          /* Fix for gmail4rails (Google maps) */
+          .map_container {
+            #map {
+              min-height: 250px;
+
+              img {
+                height: auto;
+                max-width: none;
+              }
+
+              label {
+                width: auto;
+                display:inline;
+              }
+            }
+          }
         }
       }
 

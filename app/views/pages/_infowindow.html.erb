@@ -1,0 +1,3 @@
+<% (street, city, country) = page.address.split(/, */, 3) %>
+<%= street %><br /><%= city %><br /><%= link_to 'Routenplaner', "http://maps.google.ch/?daddr=#{page.address}", :target => '_blank' %>
+

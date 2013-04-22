@@ -50,10 +50,12 @@ gem 'acts_as_ordered_tree'
 gem 'friendly_id'
 # Simple markdown
 gem 'redcarpet'
+# Integrate Google maps
+gem 'gmaps4rails'
 
 group :development do
   # To use debugger
-  # gem 'debugger'
+  gem 'debugger'
 end
 
 group :development, :test do
