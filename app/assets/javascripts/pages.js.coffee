@@ -7,7 +7,6 @@
 #= require jquery
 #= require jquery.ui.widget
 #= require jquery.ui.rlightbox
-#= require jquery.ui.rcarousel
 #= require bootstrap
 #= require jquery.eqheight
 

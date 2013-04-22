@@ -29,9 +29,12 @@ class Ability
     if user.is_admin?
       can :manage, :all
     elsif user.is_editor?
-      can :manage, Page, :maintainer => Page.maintainer_editor
+      # can :manage, Page, :maintainer => Page.maintainer_editor
+      can :manage, Page
+      can :manage, Menu
       can :manage, Gallery
       can :manage, Picture
+      can :read, :pages
     else
       can :read, :pages
     end
