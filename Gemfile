@@ -25,14 +25,17 @@ end
 
 # Rich UI
 gem 'jquery-rails'
-gem "bootstrap-sass", "~> 2.3.0.1"
-gem "simple_form", ">= 2.0.2"
+gem 'bootstrap-sass', '~> 2.3.0.1'
+gem 'simple_form', '>= 2.1.0'
+gem 'client_side_validations', '>= 3.2.1'
+gem 'client_side_validations-simple_form', :git => 'git://github.com/dockyard/client_side_validations-simple_form.git'
+
 
 # Authorisation and authentication
-gem "devise", ">= 2.1.2"
-gem "devise_invitable", ">= 1.0.3"
-gem "cancan", ">= 1.6.8"
-gem "rolify", ">= 3.2.0"
+gem 'devise', '>= 2.1.2'
+gem 'devise_invitable', '>= 1.0.3'
+gem 'cancan', '>= 1.6.8'
+gem 'rolify', '>= 3.2.0'
 
 # History
 gem 'paper_trail', '~> 2'
@@ -41,10 +44,10 @@ gem 'rmagick'
 # CarrierWave file uploader
 gem 'carrierwave'
 # enumeration and default values
-gem 'values_for', :path => "vendor/values_for"
+gem 'values_for', :path => 'vendor/values_for'
 gem 'default_value_for'
 # Menu helper
-gem "acts_as_list"
+gem 'acts_as_list'
 gem 'acts_as_ordered_tree'
 # User friendly page URLs
 gem 'friendly_id'
@@ -59,16 +62,16 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", ">= 2.11.0"
-  gem "factory_girl_rails", ">= 4.0.0"
+  gem 'rspec-rails', '>= 2.11.0'
+  gem 'factory_girl_rails', '>= 4.0.0'
 end
 
 group :test do
-  gem "capybara", ">= 1.1.2"
-  gem "email_spec", ">= 1.2.1"
-  gem "cucumber-rails", ">= 1.3.0", :require => false
-  gem "database_cleaner", ">= 0.8.0"
-  gem "launchy", ">= 2.1.2"
+  gem 'capybara', '>= 1.1.2'
+  gem 'email_spec', '>= 1.2.1'
+  gem 'cucumber-rails', '>= 1.3.0', :require => false
+  gem 'database_cleaner', '>= 0.8.0'
+  gem 'launchy', '>= 2.1.2'
 end
 
 # To use ActiveModel has_secure_password

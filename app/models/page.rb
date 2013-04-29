@@ -72,7 +72,7 @@ class Page < ActiveRecord::Base
     end
 
     def geocode?
-      (!address.blank? && (latitude.blank? || lngitude.blank?)) || address_changed?
+      (!address.blank? && (latitude.blank? || longitude.blank?)) || address_changed?
     end
 
 end

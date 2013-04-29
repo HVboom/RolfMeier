@@ -8,6 +8,8 @@
 #= require jquery.ui.widget
 #= require jquery.ui.rlightbox
 #= require bootstrap
+#= require rails.validations
+#= require rails.validations.simple_form
 #= require jquery.eqheight
 
 jQuery ->

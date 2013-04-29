@@ -1,0 +1,23 @@
+<%= simple_form_for AnfrageForm.new, :url => 'http://www.rolf-meier.ch/pages/formmail1.php', :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
+<%# simple_form_for :anfrage, :url => 'http://hvboom.dyndns.info/~Mario/formmail.php', :authenticity_token => false, :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
+  <%= f.hidden_field :redirect, :value => page_url("#{page.title.downcase}_ok") %>
+  <%# f.hidden_field :recipient, :value => 'rolf' %>
+  <%= f.hidden_field :recipient, :value => 'mario' %>
+  <%= f.hidden_field :recipient_bcc, :value => 'mario' %>
+  <%= f.hidden_field :subject, :value => "#{page.title.titleize}" %>
+
+  <fieldset class='span6'>
+    <%= f.input :nachname, :as => :string %>
+    <%= f.input :vorname, :as => :string %>
+  </fieldset>
+  <fieldset class='span6'>
+    <%= f.input :email, :as => :email, :placeholder => 'info@rolf-meier.ch', :label => 'eMail Adresse' %>
+    <%= f.input :mitteilung, :as => :text, :input_html => {:rows => 5, :style => 'resize: none'} %>
+  </fieldset>
+
+  <div class='span12'>
+    <%= f.submit 'Senden', :class => 'btn' %>
+    <%#= submit_tag 'Zurücksetzen', :type => :reset, :class => 'btn btn-warning btn-small' %>
+  </div>
+<% end %>
+

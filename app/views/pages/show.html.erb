@@ -1,6 +1,7 @@
 <% content_for :content_header do %>
   <header>
-    <h1><%= @page.title.downcase %></h1>
+    <%# change header not to have special page ending for form replies, like ..._ok or ..._error %>
+    <h1><%= @page.title.gsub(/_.*$/, '').downcase %></h1>
   </header>
 <% end %>
 
@@ -49,7 +50,9 @@
 <% end %>
 
 <% content_for :content do %>
-  <%= markdown(@page.content) %>
+  <div>
+    <%= markdown(@page.content) %>
+  </div>
 <% end %>
 
 <%# @page.short_text.html_safe %>

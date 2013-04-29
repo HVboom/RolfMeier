@@ -119,7 +119,14 @@ body {
     section {
       margin: 5%;
 
-      article.text, aside.slide_show, aside.map {
+      article.text {
+        .content div {
+          overflow-y: auto;
+          max-height: 280px;
+        }
+      }
+
+      article.text, article.formular, aside.slide_show, aside.map {
         @include setAlpha(0.5);
         margin-bottom: 5%;
 
@@ -185,20 +192,20 @@ body {
               }
             }
           }
+
+          form {
+            div {
+              margin-bottom: 5%;
+            }
+
+            input {
+              margin: 0%;
+            }
+          }
         }
       }
 
-      article.text {
-        .content {
-          margin-top: 5%;
-          padding-left: 2.5%;
-          padding-right: 2.5%;
-          overflow-y: auto;
-          max-height: 280px;
-        }
-      }
-
-      aside.text, article.slide_show, article.map {
+      aside.text, aside.formular, article.slide_show, article.map {
         @include setAlpha(0.8);
         margin-bottom: 5%;
 

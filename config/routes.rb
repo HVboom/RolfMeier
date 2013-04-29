@@ -14,7 +14,8 @@ RolfMeier::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index'
   end
-  root :to => "home#index"
-  devise_for :users, :path_names => {:sign_in => "login", :sign_out => "logout", :sign_up => "register"}
+  root :to => 'home#index'
+
+  devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => 'register'}
   resources :users, :only => [:show, :index]
 end

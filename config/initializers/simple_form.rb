@@ -140,7 +140,7 @@ SimpleForm.setup do |config|
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
   # prefer horizontal forms - information from https://github.com/plataformatec/simple_form/wiki/Twitter-Bootstrap-v2-and-simple_form-v2
-  config.form_class = 'simple_form form-horizontal'
+  # config.form_class = 'simple_form form-horizontal'
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
@@ -150,7 +150,7 @@ SimpleForm.setup do |config|
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.
-  config.browser_validations = false
+  # config.browser_validations = false
 
   # Collection of methods to detect if a file type was given.
   # config.file_methods = [ :mounted_as, :file?, :public_filename ]
