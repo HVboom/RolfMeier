@@ -1,5 +1,4 @@
-<%= simple_form_for AnfrageForm.new, :url => 'http://www.rolf-meier.ch/pages/formmail1.php', :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
-<%# simple_form_for :anfrage, :url => 'http://hvboom.dyndns.info/~Mario/formmail.php', :authenticity_token => false, :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
+<%= simple_form_for AnfrageForm.new, :url => 'http://www.rolf-meier.ch/formmail1.php', :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
   <%= f.hidden_field :redirect, :value => page_url("#{page.title.downcase}_ok") %>
   <%# f.hidden_field :recipient, :value => 'rolf' %>
   <%= f.hidden_field :recipient, :value => 'mario' %>

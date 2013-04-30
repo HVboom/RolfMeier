@@ -14,13 +14,14 @@ class Page < ActiveRecord::Base
   # model extension
   # enable user friendly URLs
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, :use => :slugged
 
   # enable Google maps
   acts_as_gmappable :process_geocoding => :geocode?,
     :address => 'address',
     :normalized_address => 'address',
-    :language => 'de'
+    :language => 'de',
+    :validation => false
 
 
   # validation is automatically done
@@ -52,6 +53,8 @@ class Page < ActiveRecord::Base
   validates_presence_of :content_type
   validates_presence_of :maintainer
 
+  # reset geocode attributes, if address is blank
+  before_save :reset_geocode
 
   # enable history
   has_paper_trail
@@ -69,6 +72,14 @@ class Page < ActiveRecord::Base
   private
     def strip_whitespaces
       self.title.strip! unless self.title.blank?
+    end
+
+    def reset_geocode
+      if self.address.blank? then
+        self.address = nil
+        self.latitude = nil
+        self.longitude = nil
+      end
     end
 
     def geocode?
