@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   load_resource :only => [:show]
   skip_authorization_check :only => [:show]
 
+  caches_page :show
+
   # GET /pages
   # GET /pages.json
   def index
@@ -64,6 +66,8 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.json
   def update
+    expire_page :action => :show
+
     respond_to do |format|
       if @page.update_attributes(params[:page])
         format.html { redirect_to @page, notice: 'Page was successfully updated.' }
@@ -79,6 +83,8 @@ class PagesController < ApplicationController
   # DELETE /pages/1.json
   def destroy
     @page.destroy
+
+    expire_page :action => :show
 
     respond_to do |format|
       format.html { redirect_to pages_url }

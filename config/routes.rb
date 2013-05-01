@@ -1,4 +1,9 @@
 RolfMeier::Application.routes.draw do
+  get 'deployment/index'
+  get 'deployment/deploy'
+  match 'deployment', :to => 'deployment#index'
+  match 'deploy', :to => 'deployment#deploy'
+
   resources :menus do
     post :sort
   end

@@ -17,14 +17,13 @@
     <%= yield(:head) %>
 
     <!-- Le fav and touch icons -->
-    <link rel='shortcut icon' href='images/favicon.ico'>
-    <link rel='apple-touch-icon-precomposed' sizes='144x144' href='images/apple-touch-icon-144-precomposed.png'>
-    <link rel='apple-touch-icon-precomposed' sizes='114x114' href='images/apple-touch-icon-114-precomposed.png'>
-    <link rel='apple-touch-icon-precomposed' sizes='72x72' href='images/apple-touch-icon-72-precomposed.png'>
-    <link rel='apple-touch-icon-precomposed' href='images/apple-touch-icon-57-precomposed.png'>
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
-    <!-- Le fav and touch icons -->
-    <%# stylesheet_link_tag "gmaps4rails", :media => "all" %>
+    <!-- application related stylesheets -->
     <%= stylesheet_link_tag "pages", :media => "all" %>
     <%= stylesheet_link_tag "jquery-ui-1.10.2.custom", :media => "all" %>
     <%= stylesheet_link_tag "lightbox", :media => "all" %>
@@ -33,7 +32,7 @@
   <body id='rolf_meier' class='container-fluid'>
     <header class='row-fluid span12'>
       <span class='logo span4'>
-        <%= link_to(image_tag('logo_rolf-meier.png', :size => '212x66', :alt => 'Rolf Meier - Inneneinrichtungen', :boarder => 0), root_url()) %>
+        <%= link_to(image_tag('logo_rolf-meier.png', :size => '212x66', :alt => 'Rolf Meier - Inneneinrichtungen', :boarder => 0), root_path()) %>
       </span>
 
       <nav class='offset2 navbar'>
