@@ -25,7 +25,7 @@ end
 
 # Rich UI
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 2.3.0.1'
+gem 'bootstrap-sass', '~> 2.3.1'
 gem 'twitter-bootstrap-markup-rails'
 gem 'simple_form', '>= 2.1.0'
 gem 'client_side_validations', '>= 3.2.1'

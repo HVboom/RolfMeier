@@ -1,14 +1,14 @@
-<ul class="nav pull-right" role="navigation">
+<ul class='nav pull-right' role='navigation'>
   <% for menuItem in Menu.roots %>
     <% unless menuItem.children.empty? %>
-      <%= content_tag :li, :class => "dropdown" do %>
-        <%# link_to("#{menuItem.title} <b class='caret'></b>", "#", :html_options => {:id => "menu_#{menuItem.title}", :role => "button", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}) do %>
-        <%= link_to("#", {:id => "menu_#{menuItem.title.downcase}", :role => "button", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}) do %>
+      <%= content_tag :li, :class => 'dropdown' do %>
+        <%# link_to('#{menuItem.title} <b class='caret'></b>', '#', :html_options => {:id => 'menu_#{menuItem.title}', :role => 'button', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown'}) do %>
+        <%= link_to('#', {:id => "menu_#{menuItem.title.downcase}", :role => 'button', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown'}) do %>
           <%= menuItem.title.downcase %>
-          <b class="caret"></b>
+          <b class='caret'></b>
         <% end %>
 
-        <ul class="dropdown-menu sub" role="menu" aria-labelledby="menu_<%= menuItem.title.downcase %>">
+        <ul class='dropdown-menu sub' role='menu' aria-labelledby="menu_<%= menuItem.title.downcase %>">
           <% for subMenuItem in menuItem.children %>
             <% unless subMenuItem.page.nil? %>
               <li>

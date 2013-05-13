@@ -21,3 +21,20 @@ jQuery ->
       if data.context
         data.context.fadeOut('slow', -> data.context.remove())
 
+  new PictureCropper()
+
+class PictureCropper
+  constructor: ->
+    $('#cropbox').Jcrop
+      aspectRatio: 200 / 150
+      onSelect: @update
+      onChange: @update
+
+  update: (coords) =>
+    $('#picture_crop_x').val(coords.x)
+    $('#picture_crop_y').val(coords.y)
+    $('#picture_crop_w').val(coords.w)
+    $('#picture_crop_h').val(coords.h)
+
+
+

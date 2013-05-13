@@ -1,25 +1,35 @@
-<%= simple_form_for(@picture, :html => {:class => "form-horizontal" }) do |f| %>
+<%= simple_form_for(@picture, :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="row">
-    <div class="form-inputs span8">
+  <div class='row'>
+    <div class='form-inputs span7'>
       <%= f.input :title %>
-      <%= f.input :image %>
+      <%= f.input :image, :hint => "Current file: #{@picture.image_identifier}" %>
       <%= f.association :gallery %>
       <%# f.input :position %>
     </div>
 
-    <div class='form-preview offset1'>
+    <div class='form-preview offset1 span3 img-polaroid'>
       <%- if @picture.image? %>
         <%= link_to image_tag(@picture.image_url(:thumb)), @picture %>
-        <br />
-        Current file: <%= @picture.image_identifier %>
       <%- end %>
     </div>
   </div>
 
-  <div class="form-actions row">
-    <%= f.button :submit, :class => "btn-primary" %>
-    <%= submit_tag "Reset", :type => :reset, :class => "btn btn-warning" %>
+  <div class='form-crop row '>
+    <%- if @picture.image? %>
+      <%= image_tag(@picture.image_url(:normal), :id => 'cropbox', :class => 'span7') %>
+
+      <div class='offset1 span3'>
+        <% %w[x y w h].each do |attribute| %>
+          <%= f.hidden_field "crop_#{attribute}"%>
+        <% end %>
+      </div>
+    <%- end %>
+  </div>
+
+  <div class='form-actions row'>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= submit_tag 'Reset', :type => :reset, :class => 'btn btn-warning' %>
   </div>
 <% end %>

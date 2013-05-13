@@ -45,11 +45,30 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb, :from_version => :normal do
+    process :crop
     process :resize_to_fill => [200, 150]
   end
 
   version :small, :from_version => :thumb do
     process :resize_to_fill => [100, 75]
+  end
+
+
+  def crop
+    if model.crop_x.present?
+      # this is necessary, because the coordinates are
+      # taken from the 'normal' version and not from the
+      # orginal picture
+      #process :resize_to_limit => [800, 600]
+
+      manipulate! do |img|
+        x = model.crop_x.to_i
+        y = model.crop_y.to_i
+        w = model.crop_w.to_i
+        h = model.crop_h.to_i
+        img.crop!(x, y, w, h)
+      end
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
