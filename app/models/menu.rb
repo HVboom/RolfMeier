@@ -16,7 +16,7 @@ class Menu < ActiveRecord::Base
 
   validates_presence_of :title
   validates_uniqueness_of :title, :case_sensitive => false
-  validate :only_2_menu_levels
+  #validate :only_2_menu_levels
 
   # enable history
   has_paper_trail
