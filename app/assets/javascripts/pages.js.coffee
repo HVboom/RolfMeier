@@ -13,23 +13,29 @@
 #= require jquery.eqheight
 
 jQuery ->
-  $('.lb_gallery').rlightbox({
+  $('.lb_gallery').rlightbox
     keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
     loop: true
-  })
 
-  $('.carousel').carousel({
+  $('.carousel').carousel
     cycle:    'cycle'
     interval: 4000
     pause:    'hover'
-  })
 
-  $('[rel=popover]').popover({
+  $('[rel=popover]').popover
     placement: 'left'
     html:      true
     trigger:   'hover'
-  })
 
   $('.dropdown-toggle').dropdown()
 
-  $('#main').eqHeight("article, aside")
+  $('ul.nav li.dropdown').hover(
+    ->
+      $(this).closest('.dropdown-menu').stop(true, true).delay(500).fadeIn()
+      $(this).addClass 'open'
+    ->
+      $(this).closest('.dropdown-menu').stop(true, true).delay(500).fadeOut()
+      $(this).removeClass 'open'
+  )
+
+  $('#main').eqHeight('article, aside')
