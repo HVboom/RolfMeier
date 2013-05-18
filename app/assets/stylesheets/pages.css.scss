@@ -6,6 +6,10 @@ $gridGutterWidth: 0px;
 $gridGutterWidth768: 0px;
 $gridGutterWidth1200: 0px;
 
+// Set the correct sprite paths
+$iconSpritePath: asset-path('glyphicons-halflings.png', image);
+$iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png", image);
+
 @import "bootstrap";
 @import "bootstrap-responsive";
 
@@ -61,6 +65,21 @@ body {
   margin-right: 0%;
   max-width: 100%;
 
+  a {
+    text-shadow: none;
+    white-space: nowrap;
+    color: $bodyBgColor;
+
+    &:hover, &:active {
+      color: $navHighlightColor;
+    }
+  }
+
+  a.external {
+    background: image-url('external_link.png') center right no-repeat;
+    padding-right: 13px;
+  }
+
   > header {
     background: $navBgColor;
     margin-left: 5%;
@@ -78,8 +97,6 @@ body {
 
       li {
         a {
-          text-shadow: none;
-          white-space: nowrap;
           color: $navColor;
 
           &:hover, &:active {

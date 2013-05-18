@@ -2,6 +2,12 @@
 body { padding-top: 60px; }
 @import 'bootstrap-responsive';
 
+#main {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 #map img {
   max-width: none;
 }

@@ -38,4 +38,10 @@ jQuery ->
       $(this).removeClass 'open'
   )
 
+  # add an indicator for external links and force the link to open in a new window
+  $('a').filter(
+    ->
+     @hostname and @hostname isnt location.hostname
+  ).addClass('external').attr('target', '_blank')
+  
   $('#main').eqHeight('article, aside')

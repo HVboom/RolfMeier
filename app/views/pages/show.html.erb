@@ -9,7 +9,7 @@
   <header>
     <hgroup>
       <h1><%= @page.title.downcase %></h1>
-      <%= link_to @page.address, "http://maps.google.ch/?daddr=#{@page.address}", :target => '_blank' %>
+      <%= link_to @page.address, "http://maps.google.ch/?daddr=#{@page.address}" %>
     </hgroup>
   </header>
 <% end %>
