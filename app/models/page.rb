@@ -3,6 +3,8 @@ class Page < ActiveRecord::Base
   has_one :gallery, :inverse_of => :page
   has_many :pictures, :through => :gallery
   belongs_to :menu, :inverse_of => :page
+  has_many :documents, :dependent => :destroy
+  accepts_nested_attributes_for :documents
 
   # mass assignment
   attr_accessible :title, :slug, :short_text, :long_text, :maintainer, :content_type, :content, :address, :menu_id

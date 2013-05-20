@@ -1,0 +1,16 @@
+<%= simple_form_for(@document) do |f| %>
+  <%= f.error_notification %>
+
+  <div class='row-fluid'>
+    <div class="form-inputs">
+      <%= f.input :title %>
+      <%= f.input :file, :hint => "Current file: #{@document.file_identifier}" %>
+      <%= f.association :page %>
+    </div>
+  </div>
+
+  <div class="form-actions row-fluid">
+    <%= f.button :submit, :class => "btn-primary" %>
+    <%= submit_tag "Reset", :type => :reset, :class => "btn btn-warning" %>
+  </div>
+<% end %>

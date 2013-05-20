@@ -230,6 +230,15 @@ body {
         .content {
           margin: 10%;
           text-align: right;
+
+          .downloads {
+            margin-top: 5%;
+
+            a {
+              background: image-url('pdficon_small.png') center right no-repeat;
+              padding-right: 20px;
+            }
+          }
         }
       }
     }

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420073135) do
+ActiveRecord::Schema.define(:version => 20130519155043) do
+
+  create_table "documents", :force => true do |t|
+    t.string   "title"
+    t.string   "file"
+    t.integer  "page_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "documents", ["page_id"], :name => "index_documents_on_page_id"
 
   create_table "galleries", :force => true do |t|
     t.string   "name"

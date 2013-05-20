@@ -1,0 +1,12 @@
+<div class="document">
+  <%# link_to document.file_identifier, document.file_url, download: document.file_identifier, target: '_blank' if document.file? %>
+  <%= link_to document.title, document.file_url, download: document.export_filename, target: '_blank' if document.file? %>
+  <div class="name">
+    <%= document.title %> (<%= number_to_human_size(document.file.size) %>)
+  </div>
+  <div class="actions">
+    <%= link_to "edit", edit_document_path(document) %> |
+    <%= link_to "remove", document, :confirm => 'Are you sure?', :method => :delete %>
+  </div>
+</div>
+

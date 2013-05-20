@@ -1,0 +1,33 @@
+<h1>Listing documents</h1>
+
+<%= form_for Document.new do |f| %>
+  <span class="btn btn-success fileinput-button">
+    <i class="icon-plus icon-white"></i>
+    <span>Add documents...</span>
+    <%= f.file_field :file, multiple: true, name: "document[file]" %>
+  </span>
+
+  <!-- The loading indicator is shown during file processing -->
+  <div class="fileupload-loading"></div>
+  <br>
+<% end %>
+
+<div class="clearfix"></div>
+
+<div id="progressbars"></div>
+
+<div class="clearfix"></div>
+
+<div id="documents">
+  <%= render @documents %>
+</div>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+  <div class="upload">
+    {%= o.name %}
+    <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="bar" style="width: 0%;"></div>
+    </div>
+  </div>
+</script>

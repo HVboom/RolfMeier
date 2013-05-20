@@ -55,7 +55,6 @@
   </div>
 <% end %>
 
-<%# @page.short_text.html_safe %>
 <%= markdown(@page.short_text) %>
 
 <% if @page.long_text? %>
@@ -65,3 +64,10 @@
     weiterlesen...
   <% end %>
 <% end %>
+
+<div class='downloads'>
+  <% @page.documents.each do |document| %>
+    <%= link_to document.title, document.file_url, download: document.export_filename, target: '_blank' if document.file? %>
+    <br />
+  <% end %>
+</div>
