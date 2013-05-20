@@ -1,7 +1,7 @@
 <%= simple_form_for(@picture, :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
-  <div class='row'>
+  <div class='row-fluid'>
     <div class='form-inputs span7'>
       <%= f.input :title %>
       <%= f.input :image, :hint => "Current file: #{@picture.image_identifier}" %>
@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class='form-crop row '>
+  <div class='form-crop row-fluid'>
     <%- if @picture.image? %>
       <%= image_tag(@picture.image_url(:normal), :id => 'cropbox', :class => 'span7') %>
 
@@ -28,7 +28,7 @@
     <%- end %>
   </div>
 
-  <div class='form-actions row'>
+  <div class='form-actions row-fluid'>
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= submit_tag 'Reset', :type => :reset, :class => 'btn btn-warning' %>
   </div>

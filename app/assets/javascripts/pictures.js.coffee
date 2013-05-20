@@ -35,6 +35,3 @@ class PictureCropper
     $('#picture_crop_y').val(coords.y)
     $('#picture_crop_w').val(coords.w)
     $('#picture_crop_h').val(coords.h)
-
-
-

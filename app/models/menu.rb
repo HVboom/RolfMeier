@@ -26,7 +26,7 @@ class Menu < ActiveRecord::Base
       # the parent is itself not a child and there is a parent
       #debugger
       if ((!self.parent.nil? && !self.leaf?) || (!self.parent.root?))
-        errors.add(:parent, "only 2 levels are allowed")
+        errors.add(:parent, 'only 2 levels are allowed')
       end
     end
 

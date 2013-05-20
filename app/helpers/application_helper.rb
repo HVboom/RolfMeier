@@ -1,6 +1,7 @@
 module ApplicationHelper
   def markdown(text)
-    renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
+    # open links in a new window
+    renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: false, link_attributes: {class: 'external', target: '_blank'})
     options = {
       autolink: true,
       no_intra_emphasis: true,
@@ -9,7 +10,8 @@ module ApplicationHelper
       strikethrough: true,
       superscript: true
     }
-    Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+    # gsub => the markdown can be used as popover content
+    Redcarpet::Markdown.new(renderer, options).render(text).gsub(/"/, "'").html_safe
   end
 end
 

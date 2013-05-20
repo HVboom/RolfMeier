@@ -13,6 +13,8 @@
 #= require jquery.eqheight
 
 jQuery ->
+  $('#main').eqHeight('article, aside')
+
   $('.lb_gallery').rlightbox
     keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
     loop: true
@@ -25,7 +27,8 @@ jQuery ->
   $('[rel=popover]').popover
     placement: 'left'
     html:      true
-    trigger:   'hover'
+    trigger:   'click'
+    animation: true
 
   $('.dropdown-toggle').dropdown()
 
@@ -43,5 +46,3 @@ jQuery ->
     ->
      @hostname and @hostname isnt location.hostname
   ).addClass('external').attr('target', '_blank')
-  
-  $('#main').eqHeight('article, aside')
