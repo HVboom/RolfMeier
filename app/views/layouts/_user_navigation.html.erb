@@ -14,7 +14,7 @@
     </li>
     <% if current_user.has_role? :admin %>
       <li>
-      <%= link_to 'Admin', users_path %>
+      <%= link_to 'Admin', deployment_path %>
       </li>
     <% end %>
   <% else %>

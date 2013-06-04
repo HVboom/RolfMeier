@@ -1,4 +1,9 @@
 namespace :deploy do
+  desc 'Copy attachments to download location'
+  task :attachments => :environment do
+    Document.deploy
+  end
+
   desc 'Create static HTML pages'
   task :pages => :environment do
     Rake::Task['cache:clear:pages'].invoke

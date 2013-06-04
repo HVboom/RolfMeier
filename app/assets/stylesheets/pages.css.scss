@@ -237,6 +237,10 @@ body {
             a {
               background: image-url('pdficon_small.png') center right no-repeat;
               padding-right: 20px;
+
+              small {
+                font-size: 80%;
+              }
             }
           }
         }

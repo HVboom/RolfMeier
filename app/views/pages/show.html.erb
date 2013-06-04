@@ -67,7 +67,11 @@
 
 <div class='downloads'>
   <% @page.documents.each do |document| %>
-    <%= link_to document.title, document.file_url, download: document.export_filename, target: '_blank' if document.file? %>
-    <br />
+    <% if document.file? %>
+      <%= link_to(document.external_url, download: document.export_filename, target: '_blank') do %>
+        <%= document.title %> <small>(<%= number_to_human_size(document.file.size) %>)</small>
+      <% end %>
+    <% end %>
+    <%= '<br />' unless document == @page.documents.last %>
   <% end %>
 </div>

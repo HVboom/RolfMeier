@@ -1,7 +1,6 @@
 RolfMeier::Application.routes.draw do
   resources :documents
 
-
   get 'deployment/index'
   get 'deployment/deploy'
   match 'deployment', :to => 'deployment#index'
