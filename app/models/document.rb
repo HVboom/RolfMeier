@@ -21,10 +21,12 @@ class Document < ActiveRecord::Base
   # enable history
   has_paper_trail
 
+  # scopes
   def self.external
     where('page_id is not null')
   end
 
+  # class methods
   def self.deploy
     # remove old files
     external_dir = File.join([Rails.public_path, ActiveModel::Naming.plural(self)].compact)
@@ -36,6 +38,7 @@ class Document < ActiveRecord::Base
     end
   end
 
+  # instance methods
   def export_filename
     (self.title.gsub(/\s+/, '_') + '.pdf') unless self.title.blank?
   end

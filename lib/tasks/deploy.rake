@@ -4,6 +4,14 @@ namespace :deploy do
     Document.deploy
   end
 
+  desc 'Copy pictures to download location'
+  task :pictures => :environment do
+    Gallery.external.each do |gallery|
+      ActsAsList.reorder_positions!(gallery.pictures)
+    end
+    Picture.deploy
+  end
+
   desc 'Create static HTML pages'
   task :pages => :environment do
     Rake::Task['cache:clear:pages'].invoke

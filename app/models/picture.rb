@@ -30,6 +30,47 @@ class Picture < ActiveRecord::Base
   def self.assigned(gallery_id)
     where("gallery_id = ?", gallery_id)
   end
+  def self.external
+    where('gallery_id is not null').joins(:gallery).merge(Gallery.external)
+  end
+
+
+  # class methods
+  def self.deploy
+    # remove old files
+    external_dir = File.join([Rails.public_path, ActiveModel::Naming.plural(self)].compact)
+    FileUtils.rm_rf(Dir[File.join([external_dir, '[^.]*'])])
+
+    # copy current files
+    self.external.each do |picture|
+      picture.copy_to
+    end
+  end
+
+  # instance methods
+  def export_filename
+    ([self.gallery.name, "%02d" % self.position].join(' ').titleize.gsub(/\s+/, '_') + '.jpg') unless self.title.blank?
+  end
+
+  def external_url(version)
+    unless self.title.blank? and self.gallery.page.blank? then
+      File.join('', [ActiveModel::Naming.plural(self.class), self.gallery.page.slug, version.to_s, self.export_filename].compact)
+    end
+  end
+
+  def copy_to
+    unless self.title.blank? and self.gallery.page.blank? then
+      # copy orginal
+      external_filename = File.join([Rails.public_path, self.external_url(nil)].compact)
+      self.image.file.copy_to(external_filename)
+
+      # copy all versions
+      self.image.versions.keys.each do |version|
+        external_filename = File.join([Rails.public_path, self.external_url(version)].compact)
+        self.image.versions[version].file.copy_to(external_filename)
+      end
+    end
+  end
 
   private
     def default_title

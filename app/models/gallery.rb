@@ -16,6 +16,11 @@ class Gallery < ActiveRecord::Base
   # enable history
   has_paper_trail
 
+  # scopes
+  def self.external
+    where('page_id is not null')
+  end
+
   private
     def strip_whitespaces
       self.name.strip! unless self.name.blank?

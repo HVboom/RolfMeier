@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   # relations
   has_one :gallery, :inverse_of => :page
-  has_many :pictures, :through => :gallery
+  has_many :pictures, :through => :gallery, :order => :position
   belongs_to :menu, :inverse_of => :page
   has_many :documents, :dependent => :destroy
   accepts_nested_attributes_for :documents

@@ -3,6 +3,7 @@ class DeploymentController < ApplicationController
 
   def deploy
     call_rake 'deploy:attachments'
+    call_rake 'deploy:pictures'
     call_rake 'deploy:pages'
     call_rake 'deploy:compile'
     flash[:notice] = 'Collecting files to deploy.'
