@@ -22,7 +22,7 @@ class Picture < ActiveRecord::Base
   validates_uniqueness_of :title, :case_sensitive => false
 
   # copy to public directory
-  before_save :copy_to
+  after_save :copy_to
 
   # enable history
   has_paper_trail

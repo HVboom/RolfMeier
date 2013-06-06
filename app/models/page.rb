@@ -58,6 +58,9 @@ class Page < ActiveRecord::Base
   # reset geocode attributes, if address is blank
   before_save :reset_geocode
 
+  # callback to copy pictures to the public location
+  after_save :copy_to
+
   # enable history
   has_paper_trail
 
@@ -69,7 +72,6 @@ class Page < ActiveRecord::Base
   def self.impressum
     find_by_slug('impressum') || contact
   end
-
 
   private
     def strip_whitespaces
@@ -88,4 +90,11 @@ class Page < ActiveRecord::Base
       (!address.blank? && (latitude.blank? || longitude.blank?)) || address_changed?
     end
 
+    def copy_to
+      Rails.logger.debug "Page - Changed attributes #{self.changes.inspect}"
+
+      unless self.gallery.blank? then
+        self.gallery.copy_to(true) if self.slug_changed? or self.gallery_id_changed?
+      end
+    end
 end
