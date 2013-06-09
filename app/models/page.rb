@@ -59,7 +59,7 @@ class Page < ActiveRecord::Base
   before_save :reset_geocode
 
   # callback to copy pictures to the public location
-  after_save :copy_to
+  after_save :publish
 
   # enable history
   has_paper_trail
@@ -90,11 +90,11 @@ class Page < ActiveRecord::Base
       (!address.blank? && (latitude.blank? || longitude.blank?)) || address_changed?
     end
 
-    def copy_to
+    def publish
       Rails.logger.debug "Page - Changed attributes #{self.changes.inspect}"
 
       unless self.gallery.blank? then
-        self.gallery.copy_to(true) if self.slug_changed? or self.gallery_id_changed?
+        self.gallery.copy_to if self.slug_changed? or self.gallery_id_changed?
       end
     end
 end

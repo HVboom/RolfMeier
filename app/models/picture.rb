@@ -22,7 +22,7 @@ class Picture < ActiveRecord::Base
   validates_uniqueness_of :title, :case_sensitive => false
 
   # copy to public directory
-  after_save :copy_to
+  after_save :publish
 
   # enable history
   has_paper_trail
@@ -62,7 +62,7 @@ class Picture < ActiveRecord::Base
   end
 
   def copy_to
-    unless self.title.blank? and self.gallery.page.blank? then
+    unless self.title.blank? or self.gallery.page.blank? then
       # copy orginal
       external_filename = File.join([Rails.public_path, self.external_url(nil)].compact)
       self.image.file.copy_to(external_filename)
@@ -89,5 +89,12 @@ class Picture < ActiveRecord::Base
         image.recreate_versions!
         self.copy_to
       end
+    end
+
+    def publish
+      Rails.logger.debug "Picture - Changed attributes #{self.changes.inspect}"
+
+      Gallery.find(self.gallery_id_was).copy_to if self.gallery_id_changed?
+      self.gallery.copy_to if self.position_changed? or self.gallery_id_changed?
     end
 end
