@@ -95,7 +95,7 @@ class Page < ActiveRecord::Base
 
       # copy assigned pictures to a new location or with new names
       unless self.gallery.blank? then
-        self.gallery.copy_to if self.slug_changed? or self.gallery_id_changed?
+        self.gallery.copy_to if self.slug_changed? # or self.gallery_id_changed?
       end
 
       # copy assigned attachments to a new location

@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   load_resource :only => [:show]
   skip_authorization_check :only => [:show]
 
+  # cache pages as deploy preparation
   caches_page :show
 
   # GET /pages

@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   check_authorization :unless => :devise_controller?
 
+  # all models influence the cached pages
+  cache_sweeper :page_sweeper
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
