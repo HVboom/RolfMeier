@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
   has_one :gallery, :inverse_of => :page
   has_many :pictures, :through => :gallery, :order => :position
   belongs_to :menu, :inverse_of => :page
-  has_many :documents, :dependent => :destroy
+  has_many :documents
   accepts_nested_attributes_for :documents
 
   # mass assignment
@@ -93,8 +93,16 @@ class Page < ActiveRecord::Base
     def publish
       Rails.logger.debug "Page - Changed attributes #{self.changes.inspect}"
 
+      # copy assigned pictures to a new location or with new names
       unless self.gallery.blank? then
         self.gallery.copy_to if self.slug_changed? or self.gallery_id_changed?
+      end
+
+      # copy assigned attachments to a new location
+      if self.slug_changed? then
+        self.documents.each do |document|
+          document.copy_to
+        end
       end
     end
 end
