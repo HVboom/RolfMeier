@@ -94,7 +94,7 @@ class Picture < ActiveRecord::Base
     def publish
       Rails.logger.debug "Picture - Changed attributes #{self.changes.inspect}"
 
-      Gallery.find(self.gallery_id_was).copy_to if self.gallery_id_changed? and self.gallery_id_was
+      Gallery.find(self.gallery_id_was).copy_to if self.gallery_id_changed?
       self.gallery.copy_to if self.position_changed? or self.gallery_id_changed?
     end
 end
