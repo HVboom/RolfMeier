@@ -62,7 +62,7 @@ class Picture < ActiveRecord::Base
   end
 
   def copy_to
-    unless self.title.blank? or self.gallery.page.blank? then
+    unless self.title.blank? or self.gallery.blank? or self.gallery.page.blank? then
       # copy orginal
       external_filename = File.join([Rails.public_path, self.external_url(nil)].compact)
       self.image.file.copy_to(external_filename)
