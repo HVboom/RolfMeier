@@ -3,9 +3,9 @@ namespace :deploy do
     print "#{msg}..."
 
     if block_given?
-      quietly do
+      # quietly do
         yield
-      end
+      # end
       puts ' Done.'
     end
   end
