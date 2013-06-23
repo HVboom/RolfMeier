@@ -24,7 +24,13 @@ namespace :deploy do
     Rake::Task['assets:precompile'].invoke
   end
 
-  desc 'Zip application changes'
-  task :zip => :environment do
+  desc 'Push public pages to GIT repository'
+  task :git => :environment do
+    Dir.chdir('public') do
+      system 'git add .'
+      message = "Site updated at #{Time.now.utc}"
+      system "git commit -am \"#{message}\""
+      system 'git push'
+    end
   end
 end
