@@ -38,11 +38,11 @@ namespace :deploy do
   desc 'Push public pages to Git repository'
   task :git => :environment do
     say 'Push public pages to Git repository' do
-      cd 'public' do
-        sh 'git add .'
+      Dir.chdir('public') do
+        system 'git add .'
         message = "Site updated at #{Time.now.utc}"
-        sh "git commit -am \"#{message}\""
-        sh 'git push'
+        system "git commit -am \"#{message}\""
+        system 'git push'
       end
     end
   end
