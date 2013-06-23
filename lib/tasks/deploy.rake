@@ -1,4 +1,15 @@
 namespace :deploy do
+  def say(msg, &block)
+    print "#{msg}..."
+
+    if block_given?
+      quietly do
+        yield
+      end
+      puts ' Done.'
+    end
+  end
+
   desc 'Copy attachments to download location'
   task :attachments => :environment do
     Document.deploy
@@ -24,13 +35,15 @@ namespace :deploy do
     Rake::Task['assets:precompile'].invoke
   end
 
-  desc 'Push public pages to GIT repository'
+  desc 'Push public pages to Git repository'
   task :git => :environment do
-    Dir.chdir('public') do
-      system 'git add .'
-      message = "Site updated at #{Time.now.utc}"
-      system "git commit -am \"#{message}\""
-      system 'git push'
+    say 'Push public pages to Git repository' do
+      cd 'public' do
+        sh 'git add .'
+        message = "Site updated at #{Time.now.utc}"
+        sh "git commit -am \"#{message}\""
+        sh 'git push'
+      end
     end
   end
 end
