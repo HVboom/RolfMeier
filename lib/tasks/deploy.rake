@@ -1,15 +1,9 @@
 namespace :deploy do
-  def say(msg, &block)
-    print "#{msg}..."
-
-    if block_given?
-      # quietly do
-        yield
-      # end
-      puts ' Done.'
-    end
+  def run(command)
+    puts "+ Running: #{command}"
+    puts "-- #{system command}"
   end
-
+  
   desc 'Copy attachments to download location'
   task :attachments => :environment do
     Document.deploy
@@ -37,13 +31,12 @@ namespace :deploy do
 
   desc 'Push public pages to Git repository'
   task :git => :environment do
-    say 'Push public pages to Git repository' do
-      Dir.chdir('public') do
-        system 'git add .'
-        message = "Site updated at #{Time.now.utc}"
-        system "git commit -am \"#{message}\""
-        system 'git push'
-      end
+    FileUtils.cd('public') do
+      FileUtils.cp('.htaccess.site', '.htaccess')
+      message = "Site updated at #{Time.now.utc} by #{ENV['USER']}"
+      run("git add -A . && git commit -am \"#{message}\"")
+      run('git push')
+      FileUtils.cp('.htaccess.passenger', '.htaccess')
     end
   end
 end
