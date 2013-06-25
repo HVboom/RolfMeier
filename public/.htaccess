@@ -1,3 +1,0 @@
-# setup passenger to serve the rails app
-Options -MultiViews
-RailsEnv development
