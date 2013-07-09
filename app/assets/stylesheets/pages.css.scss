@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*
+ *= require_self
+ *= require jquery-ui-1.10.2.custom
+ *= require lightbox
+ */
+
 $gridGutterWidth: 0px;
 $gridGutterWidth768: 0px;
 $gridGutterWidth1200: 0px;
