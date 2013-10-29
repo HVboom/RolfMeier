@@ -1,9 +1,13 @@
 # encoding: utf-8
 
 class PagesController < ApplicationController
-  load_and_authorize_resource :except => [:show]
-  load_resource :only => [:show]
-  skip_authorization_check :only => [:show]
+  # disable devise to access page
+  skip_before_filter :authenticate_user!, :only => :show
+
+  # disable cancan to access page
+  load_and_authorize_resource :except => :show
+  load_resource :only => :show
+  skip_authorization_check :only => :show
 
   # cache pages as deploy preparation
   caches_page :show

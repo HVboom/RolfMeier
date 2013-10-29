@@ -3,7 +3,7 @@ namespace :deploy do
     puts "+ Running: #{command}"
     puts "-- #{system command}"
   end
-  
+
   desc 'Copy attachments to download location'
   task :attachments => :environment do
     Document.deploy
@@ -20,7 +20,8 @@ namespace :deploy do
   desc 'Create static HTML pages'
   task :pages => :environment do
     Rake::Task['cache:clear:pages'].invoke
-    Rake::Task['cache:refresh:pages'].invoke
+    # Rake::Task['cache:refresh:pages'].invoke
+    Page.deploy
   end
 
   desc 'Pre-Complile assets'

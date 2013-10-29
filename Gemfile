@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.15'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -55,7 +55,7 @@ gem 'friendly_id'
 # Simple markdown
 gem 'redcarpet'
 # Integrate Google maps
-gem 'gmaps4rails'
+gem 'gmaps4rails', '~> 1.5.6'
 
 group :development do
   # To use debugger
@@ -82,7 +82,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

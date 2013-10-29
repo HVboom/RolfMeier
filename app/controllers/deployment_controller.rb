@@ -17,7 +17,10 @@ class DeploymentController < ApplicationController
 
     flash[:notice] = 'Collecting files to deploy and push it to the site.'
 
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to deployment_url }
+      format.json { head :no_content }
+    end
   end
 
   def index

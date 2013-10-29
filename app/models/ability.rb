@@ -34,9 +34,8 @@ class Ability
       can :manage, Menu
       can :manage, Gallery
       can :manage, Picture
-      can :read, :pages
     else
-      can :read, :pages
+      can :read, :all
     end
   end
 end

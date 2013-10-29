@@ -4,13 +4,13 @@ class Page < ActiveRecord::Base
   has_many :pictures, :through => :gallery, :order => :position
   belongs_to :menu, :inverse_of => :page
   has_many :documents
-  accepts_nested_attributes_for :documents
 
   # mass assignment
   attr_accessible :title, :slug, :short_text, :long_text, :maintainer, :content_type, :content, :address, :menu_id
   attr_accessible :gallery_attributes
   accepts_nested_attributes_for :gallery, :allow_destroy => true
   accepts_nested_attributes_for :pictures
+  accepts_nested_attributes_for :documents
   # attr_accessible :gallery, :gallery_id
 
   # model extension
@@ -71,6 +71,28 @@ class Page < ActiveRecord::Base
 
   def self.impressum
     find_by_slug('impressum') || contact
+  end
+
+  # class methods
+  def self.deploy(host =  "localhost:3000", indexPage = self.contact)
+    # iterate through all pages
+    self.all.each do |page|
+      url = Rails.application.routes.url_helpers.page_url(page, :host => host, :format => :html)
+      # silent, because it is only use to refresh the pages in the cache directory
+      cmd = "curl --fail --output /dev/null --silent --show-error --location --url #{url}"
+      logger.info "#{cmd}"
+      errorMsg = `#{cmd}`
+      if $?.success? then
+        logger.info "  ==> OK"
+      else
+        logger.warn "  ==> Error: #{errorMsg} from #{cmd}"
+      end
+    end
+
+    # create index.html
+    indexPageFilename = File.join([Rails.public_path, ActiveModel::Naming.plural(self), "#{indexPage.slug}.html"].compact)
+    indexFilename = File.join([Rails.public_path, "index.html"].compact)
+    FileUtils.cp(indexPageFilename, indexFilename, :preserve => true)
   end
 
   private
