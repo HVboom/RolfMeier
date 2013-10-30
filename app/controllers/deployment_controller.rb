@@ -7,7 +7,7 @@ class DeploymentController < ApplicationController
     # collect slide show galleries
     call_rake('deploy:pictures')
     # cache all public pages
-    call_rake('deploy:pages')
+    call_rake('deploy:pages', :host => request.host_with_port, :indexPage => params[:indexPage])
     # freshly pre-compile all assets
     call_rake('deploy:compile')
     # push everything to the git repository and with an postprocessing hook to the live site

@@ -18,10 +18,12 @@ namespace :deploy do
   end
 
   desc 'Create static HTML pages'
-  task :pages => :environment do
+  task :pages, [:host, :indexPage] => :environment do |task, args|
+    args.with_defaults(:host => 'localhost:3000', :indexPage => Page.contact)
+
     Rake::Task['cache:clear:pages'].invoke
     # Rake::Task['cache:refresh:pages'].invoke
-    Page.deploy
+    Page.deploy(args.host, args.indexPage)
   end
 
   desc 'Pre-Complile assets'
