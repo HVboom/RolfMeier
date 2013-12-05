@@ -74,7 +74,7 @@ class Page < ActiveRecord::Base
   end
 
   # class methods
-  def self.deploy(host =  "localhost:3000", indexPage = self.contact)
+  def self.deploy(host =  "rm.dev.hvboom.org", index_page = self.contact.id)
     # iterate through all pages
     self.all.each do |page|
       url = Rails.application.routes.url_helpers.page_url(page, :host => host, :format => :html)
@@ -90,9 +90,10 @@ class Page < ActiveRecord::Base
     end
 
     # create index.html
-    indexPageFilename = File.join([Rails.public_path, ActiveModel::Naming.plural(self), "#{indexPage.slug}.html"].compact)
-    indexFilename = File.join([Rails.public_path, "index.html"].compact)
-    FileUtils.cp(indexPageFilename, indexFilename, :preserve => true)
+    index_page_filename = File.join([Rails.public_path, ActiveModel::Naming.plural(self), "#{Page.find(index_page).slug}.html"].compact)
+    index_filename = File.join([Rails.public_path, "index.html"].compact)
+    logger.info "set index.html => #{index_page_filename}"
+    FileUtils.cp(index_page_filename, index_filename, :preserve => true)
   end
 
   private

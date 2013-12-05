@@ -12,5 +12,12 @@
   <li>Trigger <em>git commit</em> to auto deploy</li>
 </ul>
 
-<%= bootstrap_button 'Start process...', deployment_deploy_path, :type => 'btn btn-warning', :icon => 'icon-download-alt', :icon_white => true %>
+<%= simple_form_for(:deploy, :url => deploy_path, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.collection_select :index_page, Page.order(:title), :id, :title %>
+
+  <%= button_tag(:type => :submit, :class => 'btn btn-warning') do %>
+    <i class="icon-download-alt icon-white"></i>
+    Start process...
+  <% end %>
+<% end %>
 

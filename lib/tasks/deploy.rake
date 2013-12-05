@@ -18,12 +18,14 @@ namespace :deploy do
   end
 
   desc 'Create static HTML pages'
-  task :pages, [:host, :indexPage] => :environment do |task, args|
-    args.with_defaults(:host => 'localhost:3000', :indexPage => Page.contact)
+  task :pages, [:host, :index_page] => :environment do |task, args|
+    puts "PageDeploy - 1: #{args.host} and #{args.index_page}"
+    args.with_defaults(:host => ENV['HOST'] || 'rm.dev.hvboom.org', :index_page => ENV['INDEX_PAGE'] || Page.contact.id)
+    puts "PageDeploy - 2: #{args.host} and #{args.index_page}"
 
     Rake::Task['cache:clear:pages'].invoke
     # Rake::Task['cache:refresh:pages'].invoke
-    Page.deploy(args.host, args.indexPage)
+    Page.deploy(args.host, args.index_page)
   end
 
   desc 'Pre-Complile assets'
@@ -40,6 +42,7 @@ namespace :deploy do
       run("git add -A . && git commit -am \"#{message}\"")
       run('git push')
       FileUtils.cp('.htaccess.passenger', '.htaccess')
+      FileUtils.rm_f('index.html')
     end
   end
 end
