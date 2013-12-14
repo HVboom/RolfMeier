@@ -4,6 +4,7 @@
   <% @menus.each do |menu| %>
     <%= content_tag_for :li, menu, {:class => "menu_item ui-state-default span2", :data => {:update_url => menu_sort_url(menu)}} do %>
       <%= link_to menu.title, edit_menu_path(menu) %>
+      <%= link_to 'Del', menu_path(menu), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
 
       <%= content_tag_for :ul, menu, :submenus, :class => "sortable" do %>
         <%- if menu.leaf? %>
@@ -12,6 +13,7 @@
           <% menu.children.each do |submenu| %>
             <%= content_tag_for :li, submenu, {:class => "submenu_item ui-state-default", :data => {:update_url => menu_sort_url(submenu)}} do %>
               <%= link_to submenu.title, edit_menu_path(submenu) %>
+              <%= link_to 'Del', menu_path(submenu), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
             <% end %>
           <% end %>
         <% end %>
