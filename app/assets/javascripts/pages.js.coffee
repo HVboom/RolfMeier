@@ -8,13 +8,17 @@
 #= require jquery.ui.widget
 #= require jquery.ui.rlightbox
 #= require bootstrap
+#= require bootstrapx-clickover
 #= require rails.validations
 #= require rails.validations.simple_form
 #= require jquery.eqheight
 
 jQuery ->
+  # same height for left and right content
   $('#main').eqHeight('article, aside')
 
+
+  # slide show
   $('.lb_gallery').rlightbox
     keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
     loop: true
@@ -24,12 +28,8 @@ jQuery ->
     interval: 4000
     pause:    'hover'
 
-  $('[rel=popover]').popover
-    placement: 'left'
-    html:      true
-    trigger:   'click'
-    animation: true
 
+  # navigation
   $('.dropdown-toggle').dropdown()
 
   $('ul.nav li.dropdown').hover(
@@ -41,8 +41,17 @@ jQuery ->
       $(this).removeClass 'open'
   )
 
+
   # add an indicator for external links and force the link to open in a new window
   $('a').filter(
     ->
      @hostname and @hostname isnt location.hostname
   ).addClass('external').attr('target', '_blank')
+
+
+  # clickover
+  $('[rel=clickover]').clickover
+    placement: 'left'
+    html:      true
+    animation: true
+    esc_close: false

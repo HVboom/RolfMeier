@@ -24,7 +24,8 @@
             <% for picture in @page.pictures %>
               <li class='span6'>
                 <%#= link_to(image_tag(picture.external_url(:thumb), :class => 'img-polaroid'), picture.external_url(:normal), :class => 'lb_gallery', :title => picture.title) %>
-                <%= link_to(image_tag(picture.external_url(:thumb), :class => 'img-polaroid'), picture.external_url(:normal), :class => 'lb_gallery', :title => picture.export_filename) %>
+                <%# link_to(image_tag(picture.external_url(:thumb), :class => 'img-polaroid'), picture.external_url(:normal), :class => 'lb_gallery', :title => picture.export_filename) %>
+                <%= link_to(image_tag(picture.external_url(:thumb), :class => 'img-polaroid', :title => @page.gallery.name), picture.external_url(:normal), :class => 'lb_gallery', :title => @page.gallery.name) %>
               </li>
               <% $i += 1 %>
               <% if (($i % 2) == 0) and ($i < @page.pictures.count) %>
@@ -59,8 +60,8 @@
 <%= markdown(@page.short_text) %>
 
 <% if @page.long_text? %>
-  <%= link_to('#', html_options = { :rel => 'popover',
-              :title => @page.title.downcase,
+  <%= link_to('#', html_options = { :rel => 'clickover',
+              :title => @page.title.downcase + '<button type="button" id="close" class="close" data-dismiss="clickover">&times;</button>',
               :data => { :content => markdown(@page.long_text) }}) do %>
     weiterlesen...
   <% end %>
