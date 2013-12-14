@@ -59,7 +59,7 @@ class ImageUploader < CarrierWave::Uploader::Base
       # this is necessary, because the coordinates are
       # taken from the 'normal' version and not from the
       # orginal picture
-      #process :resize_to_limit => [800, 600]
+      # resize_to_limit(800, 600)
 
       manipulate! do |img|
         x = model.crop_x.to_i
