@@ -1,6 +1,6 @@
 <?PHP
 define('VERSION','Classic v1.07.2');
-define('MANUAL','http://www.boaddrink.com/projects/phpformmail/readme.php');
+define('MANUAL','http://www.rolf-meier.ch/phpformmail/docs/readme_pfm_classic.htm#additional_help.htm');
 define('CHECK_REFERER', true);
 
 // +------------------------------------------------------------------------+
@@ -40,11 +40,10 @@ define('CHECK_REFERER', true);
 // To change the address the e-mail comes from use define('FROM', 'Example Name <email@example.com>');
 define('FROM', null);
 
-$referers = array('www.rolf-meier.ch', 'rolf-meier.ch', 'localhost:3000');
+$referers = array('www.rolf-meier.ch', 'rolf-meier.ch', 'rm.demo.hvboom.ch', 'rm.dev.hvboom.org', 'localhost:3000');
 
 // $recipient_array format is $recipient_array = array('sometext'=>'email@example.com','asdf'=>'email2@example.com');
-// $recipient_array = array('rolf'=>'info@rolf-meier.ch','sabrina'=>'sspagnuolo@bluewin.ch');
-$recipient_array = array('rolf' => 'info@rolf-meier.ch', 'mario' => 'mario.lotz@hvboom.ch');
+$recipient_array = array('rolf' => 'info@rolf-meier.ch', 'constantin' => 'constantin.ragusa@hvboom.ch', 'mario' => 'mario.lotz@hvboom.ch');
 
 $valid_env = array('REMOTE_HOST', 'REMOTE_ADDR', 'REMOTE_USER', 'HTTP_USER_AGENT');
 

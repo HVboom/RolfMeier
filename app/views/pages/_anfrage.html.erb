@@ -1,8 +1,9 @@
-<%= simple_form_for AnfrageForm.new, :url => 'http://www.rolf-meier.ch/formmail1.php', :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
+<%= simple_form_for AnfrageForm.new, :url => 'http://www.rolf-meier.ch/formmail.php', :validate => :validators, :method => :post, :html => {:class => 'form-vertical'} do |f| %>
   <%= f.hidden_field :redirect, :value => page_url("#{page.title.downcase}_ok") %>
-  <%# f.hidden_field :recipient, :value => 'rolf' %>
-  <%= f.hidden_field :recipient, :value => 'mario' %>
-  <%= f.hidden_field :recipient_bcc, :value => 'mario' %>
+  <%= f.hidden_field :recipient, :value => 'rolf' %>
+  <%# f.hidden_field :recipient, :value => 'mario' %>
+  <%# f.hidden_field :recipient_bcc, :value => 'mario' %>
+  <%= f.hidden_field :recipient_bcc, :value => 'constantin' %>
   <%= f.hidden_field :subject, :value => "#{page.title.titleize}" %>
 
   <fieldset class='span6'>
