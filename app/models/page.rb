@@ -128,4 +128,9 @@ class Page < ActiveRecord::Base
         end
       end
     end
+
+    # customized slug to remove umlaute, e.g. ö => oe
+    def normalize_friendly_id(title)
+      super(title.asciify(Picture.asciify_map))
+    end
 end

@@ -37,8 +37,11 @@ class Picture < ActiveRecord::Base
     where('gallery_id is not null').joins(:gallery).merge(Gallery.external)
   end
 
-
   # class methods
+  def self.asciify_map
+    map ||= Asciify::Mapping[:default]
+  end
+
   def self.deploy
     # remove old files
     external_dir = File.join([Rails.public_path, ActiveModel::Naming.plural(self)].compact)
@@ -52,7 +55,7 @@ class Picture < ActiveRecord::Base
 
   # instance methods
   def export_filename
-    ([self.gallery.name, "%02d" % self.position].join(' ').titleize.gsub(/\s+/, '_') + '.jpg') unless self.title.blank?
+    ([self.gallery.name, "%02d" % self.position].join(' ').titleize.gsub(/\s+/, '_') + '.jpg').asciify(Picture.asciify_map) unless self.title.blank?
   end
 
   def external_url(version)
@@ -64,11 +67,12 @@ class Picture < ActiveRecord::Base
   def copy_to
     unless self.title.blank? or self.gallery.blank? or self.gallery.page.blank? then
       # copy orginal
-      external_filename = File.join([Rails.public_path, self.external_url(nil)].compact)
-      self.image.file.copy_to(external_filename)
+      # external_filename = File.join([Rails.public_path, self.external_url(nil)].compact)
+      # self.image.file.copy_to(external_filename)
 
       # copy all versions
-      self.image.versions.keys.each do |version|
+      # self.image.versions.keys.each do |version|
+      [:normal, :thumb].each do |version|
         external_filename = File.join([Rails.public_path, self.external_url(version)].compact)
         self.image.versions[version].file.copy_to(external_filename)
       end

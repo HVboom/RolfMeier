@@ -52,6 +52,9 @@ gem 'acts_as_list'
 gem 'acts_as_ordered_tree'
 # User friendly page URLs
 gem 'friendly_id'
+# Convert non Ascii characters
+gem 'asciify', :git => 'git://github.com/levinalex/asciify.git'
+gem 'iconv'  # asciify dependency
 # Simple markdown
 gem 'redcarpet'
 # Integrate Google maps
