@@ -40,7 +40,7 @@ class Document < ActiveRecord::Base
 
   # instance methods
   def export_filename
-    (self.title.gsub(/\s+/, '_') + '.pdf') unless self.title.blank?
+    (self.title.gsub(/\s+/, '_') + '.pdf').asciify(Picture.asciify_map) unless self.title.blank?
   end
 
   def external_url
