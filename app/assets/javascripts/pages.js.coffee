@@ -23,6 +23,16 @@ jQuery ->
     keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
     loop: true
 
+  slide_show = ->
+    if $('#slide_show_1').is(':hidden')
+      if $('#slide_show_2').is(':hidden')
+        '#slide_show_3'
+      else
+        '#slide_show_2'
+    else
+      '#slide_show_1'
+
+  # $(slide_show).carousel
   $('.carousel').carousel
     cycle:    'cycle'
     interval: 4000
