@@ -1,18 +1,18 @@
 <% if num_pictures == 1 %>
-  <div class='container-fluid visible-xs hidden-sm hidden-md hidden-lg'>
+  <div class='visible-xs hidden-sm hidden-md hidden-lg' id='slides_<%= num_pictures %>' >
 <% elsif num_pictures == 2 %>
-  <div class='container-fluid'>
+  <div class='hidden-xs visible-sm visible-md hidden-lg' id='slides_<%= num_pictures %>' >
 <% elsif num_pictures == 3 %>
-  <div class='container-fluid visible-lg hidden-xs hidden-sm hidden-md'>
+  <div class='hidden-xs hidden-sm hidden-md visible-lg' id='slides_<%= num_pictures %>' >
 <% end %>
-    <div class='row-fluid span12'>
-      <div class='carousel slide' id='slide_show_<%= num_pictures%>' >
+    <div class='row col-xs-12'>
+      <div class='carousel slide' id='slide_show_<%= num_pictures %>' >
         <div class='carousel-inner'>
           <ul class='item active thumbnails'>
             <% $i = 0 %>
             <% for picture in page.pictures %>
-              <li class='span6'>
-                <%= link_to(image_tag(picture.external_url(:thumb), :class => 'img-polaroid', :title => page.gallery.name), picture.external_url(:normal), :class => 'lb_gallery', :title => page.gallery.name) %>
+              <li class='col-xs-<%= 12 / num_pictures %>'>
+                <%= link_to(image_tag(picture.external_url(:thumb), :class => 'img-thumbnail img-responsive', :title => page.gallery.name), picture.external_url(:normal), :class => 'lb_gallery', :title => page.gallery.name) %>
               </li>
               <% $i += 1 %>
               <% if (($i % num_pictures) == 0) and ($i < page.pictures.count) %>

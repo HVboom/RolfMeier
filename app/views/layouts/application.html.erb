@@ -28,30 +28,28 @@
   </head>
 
   <body class='<%= controller.controller_name%>'>
-    <header class='navbar navbar-fixed-top'>
-      <nav class='navbar-inner'>
-        <div class='container-fluid'>
+    <div class='container-fullscreen'>
+      <header class='navbar navbar-default navbar-fixed-top' role='navigation'>
+        <nav>
           <%= render 'layouts/navigation' %>
           <%= render 'layouts/user_navigation' %>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
 
-    <div id='main' role='main'>
-      <div class='container-fluid'>
+      <div id='main' role='main'>
         <div class='content'>
-          <div class='row-fluid'>
-            <div class='span12'>
+          <div class='row'>
+            <div class='col-xs-12'>
               <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
           </div>
         </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+      </div> <!--! end of #main -->
 
-    <footer>
-    </footer>
+      <footer>
+      </footer>
+    </div> <!--! end of .container -->
 
     <!-- Javascripts - Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag 'application' %>

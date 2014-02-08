@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   skip_authorization_check :only => :show
 
   # cache pages as deploy preparation
-  caches_page :show
+  # caches_page :show
 
   # GET /pages
   # GET /pages.json

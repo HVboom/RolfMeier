@@ -24,15 +24,33 @@ jQuery ->
     loop: true
 
   slide_show = ->
-    if $('#slide_show_1').is(':hidden')
-      if $('#slide_show_2').is(':hidden')
-        '#slide_show_3'
-      else
-        '#slide_show_2'
-    else
+    if $('#slide_show_1').is(':visible')
       '#slide_show_1'
+    else
+      if $('#slide_show_2').is(':visible')
+        '#slide_show_2'
+      else
+        '#slide_show_3'
 
-  # $(slide_show).carousel
+  # alert('#slides_1 visible? ' + $('#slides_1').is(':visible'))
+  # alert('#slides_2 visible? ' + $('#slides_2').is(':visible'))
+  # alert('#slides_3 visible? ' + $('#slides_3').is(':visible'))
+
+  # alert('#slides_1 hidden? ' + $('#slides_1').is(':hidden'))
+  # alert('#slides_2 hidden? ' + $('#slides_2').is(':hidden'))
+  # alert('#slides_3 hidden? ' + $('#slides_3').is(':hidden'))
+
+  # alert('#slide_show_1 visible? ' + $('#slide_show_1').is(':visible'))
+  # alert('#slide_show_2 visible? ' + $('#slide_show_2').is(':visible'))
+  # alert('#slide_show_3 visible? ' + $('#slide_show_3').is(':visible'))
+
+  # alert('#slide_show_1 hidden? ' + $('#slide_show_1').is(':hidden'))
+  # alert('#slide_show_2 hidden? ' + $('#slide_show_2').is(':hidden'))
+  # alert('#slide_show_3 hidden? ' + $('#slide_show_3').is(':hidden'))
+
+  # alert(slide_show())
+
+  # $(slide_show()).carousel
   $('.carousel').carousel
     cycle:    'cycle'
     interval: 4000

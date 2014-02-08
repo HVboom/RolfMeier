@@ -2,7 +2,7 @@
 
 <%= form_for Picture.new do |f| %>
   <span class="btn btn-success fileinput-button">
-    <i class="icon-plus icon-white"></i>
+    <i class="glyphicon glyphicon-plus glyphicon-white"></i>
     <span>Add pictures...</span>
     <%= f.file_field :image, multiple: true, name: "picture[image]" %>
   </span>
