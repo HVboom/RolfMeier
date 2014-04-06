@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   skip_authorization_check :only => :show
 
   # cache pages as deploy preparation
-  # caches_page :show
+  caches_page :show
 
   # GET /pages
   # GET /pages.json
@@ -25,7 +25,13 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     unless @page.address.blank?
-      @map = @page.to_gmaps4rails do |page, marker|
+      #@map = @page.to_gmaps4rails do |page, marker|
+        #marker.infowindow render_to_string(:partial => 'infowindow', :locals => {:page => page})
+        #marker.title page.address
+      #end
+      @map = Gmaps4rails.build_markers(@page) do |page, marker|
+        marker.lat page.latitude
+        marker.lng page.longitude
         marker.infowindow render_to_string(:partial => 'infowindow', :locals => {:page => page})
         marker.title page.address
       end

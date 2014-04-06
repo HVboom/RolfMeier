@@ -19,11 +19,12 @@ class Page < ActiveRecord::Base
   friendly_id :title, :use => :slugged
 
   # enable Google maps
-  acts_as_gmappable :process_geocoding => :geocode?,
-    :address => 'address',
-    :normalized_address => 'address',
-    :language => 'de',
-    :validation => false
+  geocoded_by :address
+  #acts_as_gmappable :process_geocoding => :geocode?,
+    #:address => 'address',
+    #:normalized_address => 'address',
+    #:language => 'de',
+    #:validation => false
 
 
   # validation is automatically done
@@ -56,7 +57,7 @@ class Page < ActiveRecord::Base
   validates_presence_of :maintainer
 
   # reset geocode attributes, if address is blank
-  before_save :reset_geocode
+  before_save :geocode, :reset_geocode
 
   # callback to copy pictures to the public location
   after_save :publish

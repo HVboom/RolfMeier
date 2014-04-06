@@ -209,19 +209,21 @@ body {
           }
 
           /* Fix for gmail4rails (Google maps) */
-          .map_container {
-            #map {
-              min-height: 250px;
+          #map {
+            margin-top: 2%;
+            min-height: 250px;
+            border-style: solid;
+            border-color: $navBgColor;
 
-              img {
-                height: auto;
-                max-width: none;
-              }
 
-              label {
-                width: auto;
-                display:inline;
-              }
+            img {
+              height: auto;
+              max-width: none;
+            }
+
+            label {
+              width: auto;
+              display:inline;
             }
           }
 

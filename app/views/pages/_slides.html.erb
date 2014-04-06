@@ -12,7 +12,7 @@
             <% $i = 0 %>
             <% for picture in page.pictures %>
               <li class='col-xs-<%= 12 / num_pictures %>'>
-                <%= link_to(image_tag(picture.external_url(:thumb), :class => 'img-thumbnail img-responsive', :title => page.gallery.name), picture.external_url(:normal), :class => 'lb_gallery', :title => page.gallery.name) %>
+                <%= link_to(image_tag(picture.external_url(:thumb), :class => 'img-thumbnail img-responsive', :title => page.gallery.name), picture.external_url(:normal), :class => 'lb_gallery' + '_' + num_pictures.to_s, :title => page.gallery.name) %>
               </li>
               <% $i += 1 %>
               <% if (($i % num_pictures) == 0) and ($i < page.pictures.count) %>

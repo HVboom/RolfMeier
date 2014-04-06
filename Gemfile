@@ -58,7 +58,9 @@ gem 'iconv'  # asciify dependency
 # Simple markdown
 gem 'redcarpet'
 # Integrate Google maps
-gem 'gmaps4rails', '~> 1.5.6'
+#gem 'gmaps4rails', '~> 1.5.6'
+gem 'gmaps4rails'
+gem 'geocoder'
 
 group :development do
   # To use debugger

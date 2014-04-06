@@ -22,13 +22,15 @@
 
 <% content_for :map do %>
   <%# gmaps4rails(@map) %>
-  <%= gmaps(:map_options => {:container_class => 'map_container img-thumbnail img-responsive',
+  <%# gmaps(:map_options => {:container_class => 'map_container img-thumbnail img-responsive',
                              :language => 'de', :region => 'CH',
                              :auto_zoom => false, :zoom => 17,
                              :raw => '{mapTypeControlOptions: {position: google.maps.ControlPosition.RIGHT_BOTTOM}}'
                             },
             :markers => {:data => @map}
            ) %>
+   <div id='map'>
+   </div>
 <% end %>
 
 <% content_for :content do %>

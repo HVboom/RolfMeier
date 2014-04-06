@@ -2,9 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-#= require gmaps4rails/gmaps4rails.base
-#= require gmaps4rails/gmaps4rails.googlemaps
 #= require jquery
+#= require jquery_ujs
 #= require jquery.ui.widget
 #= require jquery.ui.rlightbox
 #= require bootstrap
@@ -12,6 +11,8 @@
 #= require rails.validations
 #= require rails.validations.simple_form
 #= require jquery.eqheight
+#= require underscore
+#= require gmaps/google
 
 jQuery ->
   # same height for left and right content
@@ -19,7 +20,15 @@ jQuery ->
 
 
   # slide show
-  $('.lb_gallery').rlightbox
+  $('.lb_gallery_1').rlightbox
+    keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
+    loop: true
+
+  $('.lb_gallery_2').rlightbox
+    keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
+    loop: true
+
+  $('.lb_gallery_3').rlightbox
     keys: {next: [78, 39], previous: [80, 37], close: [67, 27], panorama: [null]}
     loop: true
 
