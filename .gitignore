@@ -90,3 +90,6 @@ vendor/assets/stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css
 
 # do not store Gemfile.lock for this repository
 Gemfile.lock
+
+# Temporarily backups
+**.SAVE

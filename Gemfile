@@ -28,8 +28,10 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'twitter-bootstrap-markup-rails'
 gem 'simple_form', '>= 2.1.0'
+# gem 'client_side_validations',  :git => 'git://github.com/DavyJonesLocker/client_side_validations.git' # , '>= 3.2.1'
 gem 'client_side_validations', '>= 3.2.1'
-gem 'client_side_validations-simple_form', :git => 'git://github.com/dockyard/client_side_validations-simple_form.git'
+# gem 'client_side_validations-simple_form', :git => 'git://github.com/dockyard/client_side_validations-simple_form.git'
+gem 'client_side_validations-simple_form', '>= 1.5.0'
 
 
 # Authorisation and authentication
@@ -41,7 +43,7 @@ gem 'rolify', '>= 3.2.0'
 # History
 gem 'paper_trail', '~> 2'
 # RMagick image processing - depends on installed ImageMagick package http://cactuslab.com/imagemagick/
-gem 'rmagick'
+gem 'rmagick', :require => false
 # CarrierWave file uploader
 gem 'carrierwave'
 # enumeration and default values
